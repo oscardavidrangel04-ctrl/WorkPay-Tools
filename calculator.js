@@ -46,3 +46,12 @@ function calculate(){
 document.addEventListener('input',calculate);
 document.addEventListener('change',e=>{if(e.target.id==='mode'){const salary=document.getElementById('salaryFields'),hourly=document.getElementById('hourlyFields');if(salary&&hourly){salary.hidden=e.target.value!=='salary';hourly.hidden=e.target.value!=='hourly'}}calculate()});
 document.addEventListener('DOMContentLoaded',()=>{const m=document.getElementById('mode');if(m)m.dispatchEvent(new Event('change'));calculate()});
+
+document.addEventListener('click',async e=>{
+ if(e.target.matches('[data-copy-result]')){
+   const headline=document.getElementById('headline')?.textContent||'';
+   const rows=[...document.querySelectorAll('#breakdown div')].map(x=>x.innerText.replace(/\n/g,': ')).join('\n');
+   const text=`WorkPay Tools estimate\n${headline}\n${rows}`;
+   try{await navigator.clipboard.writeText(text);e.target.textContent='Copied';setTimeout(()=>e.target.textContent='Copy result',1400)}catch{}
+ }
+});

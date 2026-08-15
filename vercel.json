@@ -16,8 +16,135 @@
         {
           "key": "Permissions-Policy",
           "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://vitals.vercel-insights.com; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'; upgrade-insecure-requests"
         }
       ]
+    },
+    {
+      "source": "/styles.css",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=86400"
+        }
+      ]
+    },
+    {
+      "source": "/calculator.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=86400"
+        }
+      ]
+    },
+    {
+      "source": "/favicon.svg",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/calculators.html",
+      "destination": "/calculators",
+      "permanent": true
+    },
+    {
+      "source": "/about.html",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/privacy.html",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/terms.html",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/calculators/annual-income.html",
+      "destination": "/calculators/annual-income",
+      "permanent": true
+    },
+    {
+      "source": "/calculators/biweekly-pay.html",
+      "destination": "/calculators/biweekly-pay",
+      "permanent": true
+    },
+    {
+      "source": "/calculators/double-time.html",
+      "destination": "/calculators/double-time",
+      "permanent": true
+    },
+    {
+      "source": "/calculators/hourly-to-salary.html",
+      "destination": "/calculators/hourly-to-salary",
+      "permanent": true
+    },
+    {
+      "source": "/calculators/monthly-income.html",
+      "destination": "/calculators/monthly-income",
+      "permanent": true
+    },
+    {
+      "source": "/calculators/overtime-pay.html",
+      "destination": "/calculators/overtime-pay",
+      "permanent": true
+    },
+    {
+      "source": "/calculators/pay-raise.html",
+      "destination": "/calculators/pay-raise",
+      "permanent": true
+    },
+    {
+      "source": "/calculators/pto-value.html",
+      "destination": "/calculators/pto-value",
+      "permanent": true
+    },
+    {
+      "source": "/calculators/salary-to-hourly.html",
+      "destination": "/calculators/salary-to-hourly",
+      "permanent": true
+    },
+    {
+      "source": "/calculators/shift-differential.html",
+      "destination": "/calculators/shift-differential",
+      "permanent": true
+    },
+    {
+      "source": "/calculators/time-card.html",
+      "destination": "/calculators/time-card",
+      "permanent": true
+    },
+    {
+      "source": "/calculators/weekly-pay.html",
+      "destination": "/calculators/weekly-pay",
+      "permanent": true
+    },
+    {
+      "source": "/calculators/work-hours.html",
+      "destination": "/calculators/work-hours",
+      "permanent": true
     }
   ]
 }

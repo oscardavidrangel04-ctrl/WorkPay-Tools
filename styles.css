@@ -18,3 +18,20 @@
 .footer{padding:42px 5vw;border-top:1px solid var(--border);background:#fff}.footer-inner{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px}.footer h3{margin-top:0}.footer p,.footer a,.footer small{color:var(--muted);font-size:14px}.footer-links{display:grid;gap:8px}.footer-bottom{max-width:1200px;margin:28px auto 0;padding-top:18px;border-top:1px solid var(--border);display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:12px}
 @media(max-width:900px){.hero,.calc-layout,.band-inner{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.calc-card{position:static}.footer-inner{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.site-header{min-height:68px}.brand{font-size:18px}.logo{width:34px;height:34px}.nav{gap:12px;font-size:12px}.nav a:nth-child(3){display:none}.hero{padding:52px 18px}.hero h1,.page-head h1{letter-spacing:-2px}.section,.page-head,.calc-layout{padding-left:18px;padding-right:18px}.breadcrumb{padding-left:18px;padding-right:18px}.grid{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr}.footer-bottom{flex-direction:column}.calc-card,.content-card{padding:21px}.band-inner{padding:52px 18px}}
+
+:focus-visible{outline:3px solid #7aa7ff;outline-offset:3px}
+.kicker{font-size:13px;color:var(--muted);margin-top:8px}
+.intent-answer{background:#eef6ff;border:1px solid #c8dcff;border-radius:14px;padding:18px 20px;margin-top:18px}
+.intent-answer strong{display:block;margin-bottom:4px}
+.data-note{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
+.data-note div{background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:12px}
+.data-note b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted)}
+.data-note span{font-weight:800}
+.two-col-list{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.two-col-list h3{margin-top:0}
+.copy-row{display:flex;gap:8px;margin-top:12px;justify-content:center}
+.mini-btn{border:1px solid #b9cbe0;background:#fff;color:var(--navy);font-weight:800;border-radius:9px;padding:8px 11px;cursor:pointer}
+.result[aria-live]{min-height:110px}
+.editorial{border-left:4px solid var(--teal)}
+.updated{font-size:12px;color:var(--muted);font-weight:700}
+@media(max-width:700px){.two-col-list,.data-note{grid-template-columns:1fr}}
