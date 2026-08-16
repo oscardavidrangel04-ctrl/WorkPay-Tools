@@ -50,3 +50,25 @@ WORKPAY TOOLS V4 — SCREAMING FROG FIX
 - Improved the home/About H1 text.
 - Expanded short meta descriptions on About, Contact, Privacy and Terms.
 - Replaced the repeated first calculator H2 with a more specific heading per tool.
+
+V5 — OVERTIME PREMIUM (2026-08-16)
+- Expanded Overtime Pay Calculator result breakdown.
+- Added dynamic weekly pay examples table.
+- Added responsive earnings chart based on current inputs.
+- Added Copy, Print and Reset actions.
+- Expanded federal overtime context, assumptions, common mistakes and FAQ.
+- Added FAQPage structured data and refreshed page metadata/dateModified.
+- Added primary U.S. Department of Labor overtime source link.
+
+
+V5.1 — Overtime Advanced UX (August 16, 2026)
+- Basic / Advanced overtime modes.
+- Optional eligible additional compensation input for simplified regular-rate planning.
+- Seven-day weekly hours worksheet with one-click total.
+- Quick 40/45/50/55/60-hour presets.
+- Straight-time vs estimated overtime comparison.
+- Shareable calculator URLs that preserve inputs.
+- Advanced-mode chart and scenario table support.
+- Mobile responsive controls and accessibility states.
+
+V5.3 Overtime UX Polish: sticky section navigation, simple/detailed result views, smart input guidance, plain-language result insight, quick hourly-rate examples, expanded trust methodology, and synchronized 11-question FAQ schema.

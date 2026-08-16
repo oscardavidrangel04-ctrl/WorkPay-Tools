@@ -7,9 +7,19 @@ function calculate(){
  const id=document.body.dataset.calculator;
  if(!id)return;
  if(id==='overtime'||id==='weeklyPay'){
-   const rate=num('rate'),hours=num('hours'),threshold=num('threshold',40),mult=num('multiplier',1.5);
-   const regH=Math.min(hours,threshold),otH=Math.max(0,hours-threshold),reg=regH*rate,ot=otH*rate*mult;
-   setResult(`${money(reg+ot)} / week`,[['Regular hours',regH.toFixed(2)],['Overtime hours',otH.toFixed(2)],['Overtime rate',money(rate*mult)+'/hr'],['Regular pay',money(reg)],['Overtime pay',money(ot)]]);
+   const rate=Math.max(0,num('rate')),hours=Math.max(0,num('hours')),threshold=Math.max(0,num('threshold',40)),mult=Math.max(1,num('multiplier',1.5));
+   if(id==='overtime'){
+     const mode=document.body.dataset.overtimeMode||'basic', bonus=Math.max(0,num('bonus'));
+     const r=calculateOvertimeModel(rate,hours,threshold,mult,mode,bonus);
+     const rows=[['Calculation mode',mode==='advanced'?'Advanced regular-rate estimate':'Basic hourly estimate'],['Regular hourly rate',money(rate)+'/hr'],['Regular hours',r.regularHours.toFixed(2)],['Overtime hours',r.overtimeHours.toFixed(2)],['Overtime rate',money(r.overtimeRate)+'/hr']];
+     if(mode==='advanced'){rows.push(['Eligible additional compensation',money(bonus)],['Estimated regular rate',money(r.regularRate)+'/hr']);}
+     rows.push(['Regular / straight-time pay',money(r.straightTime)],['Overtime premium',money(r.overtimePremium)],['Total gross pay',money(r.total)]);
+     setResult(`${money(r.total)} / week`,rows);
+     updateOvertimeComparison(r); updateOvertimeExtras(rate,threshold,mult,mode,bonus); updateScenarioComparison(rate,threshold,mult,mode,bonus,r); updatePremiumTracker(r); updateMultiRateSummary(); updateOvertimeGuidance(rate,hours,threshold,mult,mode,bonus,r); updateResultInsight(rate,hours,threshold,mult,mode,r); saveOvertimeState();
+   } else {
+     const regH=Math.min(hours,threshold),otH=Math.max(0,hours-threshold),reg=regH*rate,ot=otH*rate*mult;
+     setResult(`${money(reg+ot)} / week`,[['Regular hourly rate',money(rate)+'/hr'],['Regular hours',regH.toFixed(2)],['Overtime hours',otH.toFixed(2)],['Overtime rate',money(rate*mult)+'/hr'],['Regular pay',money(reg)],['Overtime pay',money(ot)],['Total gross pay',money(reg+ot)]]);
+   }
  } else if(id==='hourlySalary'){
    const rate=num('rate'),hours=num('hours'),weeks=num('weeks',52),weekly=rate*hours,annual=weekly*weeks;
    setResult(`${money(annual)} / year`,[['Weekly pay',money(weekly)],['Monthly average',money(annual/12)],['Annual pay',money(annual)]]);
@@ -45,9 +55,18 @@ function calculate(){
 }
 document.addEventListener('input',calculate);
 document.addEventListener('change',e=>{if(e.target.id==='mode'){const salary=document.getElementById('salaryFields'),hourly=document.getElementById('hourlyFields');if(salary&&hourly){salary.hidden=e.target.value!=='salary';hourly.hidden=e.target.value!=='hourly'}}calculate()});
-document.addEventListener('DOMContentLoaded',()=>{const m=document.getElementById('mode');if(m)m.dispatchEvent(new Event('change'));calculate()});
+document.addEventListener('DOMContentLoaded',()=>{const m=document.getElementById('mode');if(m)m.dispatchEvent(new Event('change'));if(document.body.dataset.calculator==='overtime')initOvertimePage();calculate()});
 
 document.addEventListener('click',async e=>{
+ if(e.target.matches('[data-print-result]')){window.print();return}
+ if(e.target.matches('[data-overtime-mode]')){setOvertimeMode(e.target.dataset.overtimeMode);calculate();return}
+ if(e.target.matches('[data-hours-preset]')){const h=document.getElementById('hours');if(h){h.value=e.target.dataset.hoursPreset;calculate()}return}
+ if(e.target.matches('[data-rate-preset]')){const rate=document.getElementById('rate'),hours=document.getElementById('hours'),threshold=document.getElementById('threshold'),mult=document.getElementById('multiplier');if(rate)rate.value=e.target.dataset.ratePreset;if(hours)hours.value=45;if(threshold)threshold.value=40;if(mult)mult.value=1.5;setOvertimeMode('basic');calculate();document.getElementById('calculator')?.scrollIntoView({behavior:'smooth',block:'start'});return}
+ if(e.target.matches('[data-result-view]')){setResultView(e.target.dataset.resultView);return}
+ if(e.target.matches('[data-use-daily-total]')){const h=document.getElementById('hours');if(h){h.value=getDailyTotal().toFixed(2);calculate()}return}
+ if(e.target.matches('[data-use-multi-rate]')){applyMultiRateWorkweek();return}
+ if(e.target.matches('[data-reset-overtime]')){resetOvertime();return}
+ if(e.target.matches('[data-share-result]')){const url=buildOvertimeShareUrl();try{await navigator.clipboard.writeText(url);setShareStatus('Share link copied.')}catch{setShareStatus('Copy this URL from your address bar: '+url)}return}
  if(e.target.matches('[data-copy-result]')){
    const headline=document.getElementById('headline')?.textContent||'';
    const rows=[...document.querySelectorAll('#breakdown div')].map(x=>x.innerText.replace(/\n/g,': ')).join('\n');
@@ -55,3 +74,135 @@ document.addEventListener('click',async e=>{
    try{await navigator.clipboard.writeText(text);e.target.textContent='Copied';setTimeout(()=>e.target.textContent='Copy result',1400)}catch{}
  }
 });
+
+function calculateOvertimeModel(rate,hours,threshold,mult,mode='basic',bonus=0){
+ const safeRate=Math.max(0,rate),safeHours=Math.max(0,hours),safeThreshold=Math.max(0,threshold),safeMult=Math.max(1,mult),safeBonus=Math.max(0,bonus);
+ const regularHours=Math.min(safeHours,safeThreshold),overtimeHours=Math.max(0,safeHours-safeThreshold);
+ if(mode==='advanced' && safeHours>0){
+   const baseWages=safeRate*safeHours,straightTime=baseWages+safeBonus,regularRate=straightTime/safeHours;
+   const overtimePremium=overtimeHours*regularRate*Math.max(0,safeMult-1),overtimeRate=regularRate*safeMult,total=straightTime+overtimePremium;
+   return {regularHours,overtimeHours,regularRate,overtimeRate,straightTime,overtimePremium,total};
+ }
+ const regularPay=regularHours*safeRate,overtimePay=overtimeHours*safeRate*safeMult,total=regularPay+overtimePay;
+ const straightTime=safeRate*safeHours,overtimePremium=Math.max(0,total-straightTime);
+ return {regularHours,overtimeHours,regularRate:safeRate,overtimeRate:safeRate*safeMult,straightTime,overtimePremium,total};
+}
+function overtimeAtHours(rate,hours,threshold,mult,mode='basic',bonus=0){
+ const r=calculateOvertimeModel(rate,hours,threshold,mult,mode,bonus);
+ return {regularHours:r.regularHours,overtimeHours:r.overtimeHours,regularPay:r.straightTime-r.overtimeHours*rate,overtimePay:r.total-(r.straightTime-r.overtimeHours*rate),total:r.total};
+}
+function updateOvertimeComparison(r){
+ const straight=document.getElementById('straightTimePay'),withOt=document.getElementById('withOvertimePay'),premium=document.getElementById('overtimePremium');
+ if(straight)straight.textContent=money(r.straightTime);if(withOt)withOt.textContent=money(r.total);if(premium)premium.textContent='+'+money(r.overtimePremium);
+}
+function updateOvertimeExtras(rate,threshold,mult,mode='basic',bonus=0){
+ const tbody=document.getElementById('overtimeExamples');
+ if(tbody){
+   const raw=[threshold,threshold+5,threshold+10,threshold+15,threshold+20];
+   const hoursList=[...new Set(raw.map(x=>Math.max(0,Math.round(x*100)/100)))];
+   tbody.innerHTML=hoursList.map(hours=>{const r=calculateOvertimeModel(rate,hours,threshold,mult,mode,bonus);return `<tr><td>${hours.toFixed(2)}</td><td>${money(r.straightTime)}</td><td>${money(r.overtimePremium)}</td><td><strong>${money(r.total)}</strong></td></tr>`}).join('');
+ }
+ drawOvertimeChart(rate,threshold,mult,mode,bonus);
+}
+function drawOvertimeChart(rate,threshold,mult,mode='basic',bonus=0){
+ const canvas=document.getElementById('overtimeChart'); if(!canvas)return;
+ const ctx=canvas.getContext('2d'); if(!ctx)return;
+ const dpr=Math.max(1,window.devicePixelRatio||1),cssW=Math.max(280,canvas.parentElement?.clientWidth||760),cssH=300;
+ canvas.width=Math.round(cssW*dpr);canvas.height=Math.round(cssH*dpr);canvas.style.width=cssW+'px';canvas.style.height=cssH+'px';ctx.setTransform(dpr,0,0,dpr,0,0);
+ ctx.clearRect(0,0,cssW,cssH);
+ const start=Math.max(0,threshold),points=Array.from({length:9},(_,i)=>start+i*2.5),values=points.map(h=>calculateOvertimeModel(rate,h,threshold,mult,mode,bonus).total),max=Math.max(1,...values);
+ const pad={l:62,r:20,t:20,b:42},w=cssW-pad.l-pad.r,h=cssH-pad.t-pad.b;
+ ctx.strokeStyle='#dbe5f0';ctx.lineWidth=1;ctx.fillStyle='#64748b';ctx.font='12px system-ui';ctx.textAlign='right';ctx.textBaseline='middle';
+ for(let i=0;i<=4;i++){const y=pad.t+h-(h*i/4),v=max*i/4;ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(cssW-pad.r,y);ctx.stroke();ctx.fillText('$'+Math.round(v).toLocaleString('en-US'),pad.l-8,y)}
+ ctx.textAlign='center';ctx.textBaseline='top';points.forEach((p,i)=>{if(i%2===0||i===points.length-1){const x=pad.l+w*i/(points.length-1);ctx.fillText(p.toFixed(p%1?1:0)+'h',x,cssH-pad.b+10)}});
+ ctx.strokeStyle='#2563eb';ctx.lineWidth=3;ctx.lineJoin='round';ctx.lineCap='round';ctx.beginPath();values.forEach((v,i)=>{const x=pad.l+w*i/(values.length-1),y=pad.t+h-(v/max*h);i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.stroke();
+ ctx.fillStyle='#2563eb';values.forEach((v,i)=>{const x=pad.l+w*i/(values.length-1),y=pad.t+h-(v/max*h);ctx.beginPath();ctx.arc(x,y,3.5,0,Math.PI*2);ctx.fill()});
+ const summary=document.getElementById('chartSummary');if(summary)summary.textContent=`At ${money(rate)}/hr with a ${mult.toFixed(2)}× multiplier, estimated gross pay rises from ${money(values[0])} at ${points[0].toFixed(2)} hours to ${money(values.at(-1))} at ${points.at(-1).toFixed(2)} hours${mode==='advanced'&&bonus>0?' using the advanced compensation estimate':''}.`;
+}
+function getMultiRateData(){
+ const rows=[1,2,3].map(i=>({rate:Math.max(0,num('mrRate'+i)),hours:Math.max(0,num('mrHours'+i))}));
+ const hours=rows.reduce((a,r)=>a+r.hours,0),wages=rows.reduce((a,r)=>a+r.rate*r.hours,0),weighted=hours>0?wages/hours:0;
+ return {rows,hours,wages,weighted};
+}
+function updateMultiRateSummary(){
+ const d=getMultiRateData(),rate=document.getElementById('mrWeightedRate'),hours=document.getElementById('mrTotalHours');
+ if(rate)rate.textContent=money(d.weighted)+'/hr';if(hours)hours.textContent=d.hours.toFixed(2)+' h';
+}
+function applyMultiRateWorkweek(){
+ const d=getMultiRateData();if(d.hours<=0){setShareStatus('Add hours to the multiple-rate worksheet first.');return}
+ const rate=document.getElementById('rate'),hours=document.getElementById('hours');if(rate)rate.value=d.weighted.toFixed(4);if(hours)hours.value=d.hours.toFixed(2);setOvertimeMode('advanced');calculate();setShareStatus('Weighted workweek applied to the advanced estimate.');
+}
+function updateScenarioComparison(rate,threshold,mult,mode,bonus,current){
+ const h=Math.max(0,num('scenarioHours',50)),b=calculateOvertimeModel(rate,h,threshold,mult,mode,bonus),currentEl=document.getElementById('scenarioCurrent'),bEl=document.getElementById('scenarioB'),diffEl=document.getElementById('scenarioDifference');
+ if(currentEl)currentEl.textContent=money(current.total);if(bEl)bEl.textContent=money(b.total);if(diffEl){const d=b.total-current.total;diffEl.textContent=(d>=0?'+':'−')+money(Math.abs(d));diffEl.dataset.direction=d>=0?'up':'down';}
+}
+function updatePremiumTracker(r){
+ const weeks=Math.min(52,Math.max(1,Math.round(num('premiumWeeks',52)))),weekly=document.getElementById('weeklyPremiumTracker'),annual=document.getElementById('annualPremiumTracker');
+ if(weekly)weekly.textContent=money(r.overtimePremium)+' / week';if(annual)annual.textContent=money(r.overtimePremium*weeks);
+}
+const OT_STATE_KEY='workpay:overtime:v52';
+function overtimeStateIds(){return ['rate','hours','threshold','multiplier','bonus','scenarioHours','premiumWeeks','dayMon','dayTue','dayWed','dayThu','dayFri','daySat','daySun','mrRate1','mrHours1','mrRate2','mrHours2','mrRate3','mrHours3']}
+function saveOvertimeState(){
+ try{const values={};overtimeStateIds().forEach(id=>{const el=document.getElementById(id);if(el)values[id]=el.value});localStorage.setItem(OT_STATE_KEY,JSON.stringify({mode:document.body.dataset.overtimeMode||'basic',values}))}catch{}
+}
+function restoreOvertimeState(){
+ if(location.search)return false;try{const raw=localStorage.getItem(OT_STATE_KEY);if(!raw)return false;const state=JSON.parse(raw);Object.entries(state.values||{}).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.value=v});setOvertimeMode(state.mode==='advanced'?'advanced':'basic');return true}catch{return false}
+}
+function setOvertimeMode(mode){
+ const safe=mode==='advanced'?'advanced':'basic';document.body.dataset.overtimeMode=safe;
+ document.querySelectorAll('[data-overtime-mode]').forEach(b=>{const active=b.dataset.overtimeMode===safe;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
+ document.querySelectorAll('.advanced-only').forEach(el=>el.hidden=safe!=='advanced');
+}
+function getDailyTotal(){return ['dayMon','dayTue','dayWed','dayThu','dayFri','daySat','daySun'].reduce((sum,id)=>sum+Math.max(0,num(id)),0)}
+function updateDailyTotal(){const out=document.getElementById('dailyTotal');if(out)out.textContent=getDailyTotal().toFixed(2)+' hours'}
+function buildOvertimeShareUrl(){
+ const u=new URL(window.location.href);u.search='';const params={rate:num('rate'),hours:num('hours'),threshold:num('threshold',40),multiplier:num('multiplier',1.5),mode:document.body.dataset.overtimeMode||'basic'};
+ if(params.mode==='advanced'&&num('bonus')>0)params.bonus=num('bonus');
+ if(num('scenarioHours',50)!==50)params.scenario=num('scenarioHours',50); if(num('premiumWeeks',52)!==52)params.weeks=num('premiumWeeks',52);
+ [1,2,3].forEach(i=>{const rr=num('mrRate'+i),hh=num('mrHours'+i);if(hh>0){params['r'+i]=rr;params['h'+i]=hh}});
+ const days=['dayMon','dayTue','dayWed','dayThu','dayFri','daySat','daySun'];days.forEach((id,i)=>{const v=num(id);if(v>0)params['d'+(i+1)]=v});
+ Object.entries(params).forEach(([k,v])=>u.searchParams.set(k,String(v)));return u.toString();
+}
+function setShareStatus(text){const el=document.getElementById('shareStatus');if(el){el.textContent=text;setTimeout(()=>{if(el.textContent===text)el.textContent=''},2600)}}
+function loadOvertimeFromUrl(){
+ const p=new URLSearchParams(location.search),ids={rate:'rate',hours:'hours',threshold:'threshold',multiplier:'multiplier',bonus:'bonus'};
+ Object.entries(ids).forEach(([key,id])=>{if(p.has(key)){const el=document.getElementById(id),v=parseFloat(p.get(key));if(el&&Number.isFinite(v)&&v>=0)el.value=v}});
+ const mode=p.get('mode');setOvertimeMode(mode==='advanced'?'advanced':'basic');
+ if(p.has('scenario')){const el=document.getElementById('scenarioHours'),v=parseFloat(p.get('scenario'));if(el&&Number.isFinite(v)&&v>=0)el.value=v} if(p.has('weeks')){const el=document.getElementById('premiumWeeks'),v=parseFloat(p.get('weeks'));if(el&&Number.isFinite(v))el.value=Math.min(52,Math.max(1,v))}
+ [1,2,3].forEach(i=>{for(const [key,id] of [['r'+i,'mrRate'+i],['h'+i,'mrHours'+i]]){if(p.has(key)){const el=document.getElementById(id),v=parseFloat(p.get(key));if(el&&Number.isFinite(v)&&v>=0)el.value=v}}});
+ ['dayMon','dayTue','dayWed','dayThu','dayFri','daySat','daySun'].forEach((id,i)=>{const v=parseFloat(p.get('d'+(i+1)));const el=document.getElementById(id);if(el&&Number.isFinite(v)&&v>=0)el.value=v});updateDailyTotal();
+}
+function resetOvertime(){
+ const defaults={rate:20,hours:45,threshold:40,multiplier:1.5,bonus:0,scenarioHours:50,premiumWeeks:52,dayMon:0,dayTue:0,dayWed:0,dayThu:0,dayFri:0,daySat:0,daySun:0,mrRate1:20,mrHours1:40,mrRate2:25,mrHours2:5,mrRate3:0,mrHours3:0};for(const [id,value] of Object.entries(defaults)){const el=document.getElementById(id);if(el)el.value=value}setOvertimeMode('basic');history.replaceState(null,'',location.pathname);try{localStorage.removeItem(OT_STATE_KEY)}catch{}updateDailyTotal();updateMultiRateSummary();calculate();
+}
+function initOvertimePage(){if(!restoreOvertimeState())loadOvertimeFromUrl();updateDailyTotal();updateMultiRateSummary();setResultView(localStorage.getItem('workpay:overtime:view')||'detailed');document.querySelectorAll('.daily-grid input').forEach(el=>el.addEventListener('input',updateDailyTotal));}
+window.addEventListener('resize',()=>{if(document.body.dataset.calculator==='overtime')updateOvertimeExtras(num('rate'),num('threshold',40),num('multiplier',1.5),document.body.dataset.overtimeMode||'basic',num('bonus'))});
+
+
+function setResultView(view){
+ const safe=view==='simple'?'simple':'detailed',card=document.querySelector('.calc-card');
+ if(card)card.classList.toggle('simple-result',safe==='simple');
+ document.querySelectorAll('[data-result-view]').forEach(btn=>{const active=btn.dataset.resultView===safe;btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',String(active))});
+ try{localStorage.setItem('workpay:overtime:view',safe)}catch{}
+}
+function updateOvertimeGuidance(rate,hours,threshold,mult,mode,bonus,r){
+ const box=document.getElementById('inputGuidance');if(!box)return;
+ let text='',kind='good';
+ const rawRate=num('rate'),rawHours=num('hours'),rawThreshold=num('threshold',40),rawMult=num('multiplier',1.5);
+ if(rawRate<0||rawHours<0||rawThreshold<0){text='Use zero or positive values for rate, hours and threshold.';kind='warn'}
+ else if(hours>168){text='A seven-day workweek contains 168 hours. Double-check the hours entered.';kind='warn'}
+ else if(threshold>168){text='The overtime threshold is above the number of hours in a seven-day week. Check this planning assumption.';kind='warn'}
+ else if(mult>3){text='This overtime multiplier is unusually high. Confirm that it matches the rule or agreement you are modeling.';kind='warn'}
+ else if(rate===0){text='Enter an hourly rate above $0 to calculate meaningful earnings.';kind='warn'}
+ else if(hours<=threshold){text=`No overtime hours are triggered by these inputs: ${hours.toFixed(2)} hours is at or below the ${threshold.toFixed(2)}-hour threshold.`;kind='good'}
+ else if(mode==='advanced'&&bonus===0){text='Advanced mode is active, but no additional compensation is entered. The result may match the basic hourly estimate.';kind='good'}
+ else if(r.overtimeHours>0){text=`${r.overtimeHours.toFixed(2)} overtime hours are included using a ${mult.toFixed(2)}× multiplier.`;kind='good'}
+ box.innerHTML=text?`<div class="guidance-item ${kind}">${text}</div>`:'';
+}
+function updateResultInsight(rate,hours,threshold,mult,mode,r){
+ const el=document.getElementById('resultInsight');if(!el)return;
+ if(rate<=0){el.textContent='Enter your hourly rate to see an explanation of the estimate.';return}
+ if(r.overtimeHours<=0){el.textContent=`At ${money(rate)}/hr for ${hours.toFixed(2)} hours, this scenario stays within the ${threshold.toFixed(2)}-hour threshold, so the estimate contains no overtime premium.`;return}
+ const modeText=mode==='advanced'?'advanced regular-rate estimate':'basic hourly-rate model';
+ el.textContent=`At ${money(rate)}/hr for ${hours.toFixed(2)} hours, ${r.overtimeHours.toFixed(2)} hours fall above the ${threshold.toFixed(2)}-hour threshold. Using the ${modeText} and a ${mult.toFixed(2)}× multiplier, the estimated overtime premium adds ${money(r.overtimePremium)}, bringing weekly gross pay to ${money(r.total)}.`;
+}
