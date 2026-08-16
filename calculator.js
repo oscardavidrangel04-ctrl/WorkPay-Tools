@@ -179,8 +179,12 @@ function initOvertimePage(){if(!restoreOvertimeState())loadOvertimeFromUrl();upd
 window.addEventListener('resize',()=>{if(document.body.dataset.calculator==='overtime')updateOvertimeExtras(num('rate'),num('threshold',40),num('multiplier',1.5),document.body.dataset.overtimeMode||'basic',num('bonus'))});
 
 
+
+function syncHourPresetState(){
+ const hours=num('hours');document.querySelectorAll('[data-hours-preset]').forEach(btn=>btn.classList.toggle('active',Math.abs(Number(btn.dataset.hoursPreset)-hours)<0.001));
+}
 function setResultView(view){
- const safe=view==='simple'?'simple':'detailed',card=document.querySelector('.calc-card');
+ const safe=view==='simple'?'simple':'detailed',card=document.querySelector('.result-panel');
  if(card)card.classList.toggle('simple-result',safe==='simple');
  document.querySelectorAll('[data-result-view]').forEach(btn=>{const active=btn.dataset.resultView===safe;btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',String(active))});
  try{localStorage.setItem('workpay:overtime:view',safe)}catch{}
@@ -206,3 +210,7 @@ function updateResultInsight(rate,hours,threshold,mult,mode,r){
  const modeText=mode==='advanced'?'advanced regular-rate estimate':'basic hourly-rate model';
  el.textContent=`At ${money(rate)}/hr for ${hours.toFixed(2)} hours, ${r.overtimeHours.toFixed(2)} hours fall above the ${threshold.toFixed(2)}-hour threshold. Using the ${modeText} and a ${mult.toFixed(2)}× multiplier, the estimated overtime premium adds ${money(r.overtimePremium)}, bringing weekly gross pay to ${money(r.total)}.`;
 }
+
+
+document.addEventListener('click',e=>{const focus=e.target.closest('[data-focus-result]');if(focus){document.getElementById('resultPanel')?.scrollIntoView({behavior:'smooth',block:'start'});}const preset=e.target.closest('[data-hours-preset]');if(preset)setTimeout(syncHourPresetState,0);});
+document.getElementById('hours')?.addEventListener('input',syncHourPresetState);
