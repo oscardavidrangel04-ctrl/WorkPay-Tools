@@ -25,11 +25,48 @@ function calculate(){
    setResult(`${money(annual)} / year`,[['Hourly rate',money(rate)+'/hr'],['Paid hours / week',hours.toFixed(2)],['Paid weeks / year',weeks.toFixed(0)],['Weekly gross',money(weekly)],['Biweekly average',money(annual/26)],['Semimonthly average',money(annual/24)],['Monthly average',money(annual/12)],['Annual gross pay',money(annual)]]);
    updateHourlySalaryPage(rate,hours,weeks,weekly,annual);
  } else if(id==='salaryHourly'){
-   const salary=num('salary'),hours=Math.max(.01,num('hours',40)),weeks=Math.max(.01,num('weeks',52)),hourly=salary/(hours*weeks);
-   setResult(`${money(hourly)} / hour`,[['Weekly average',money(salary/weeks)],['Monthly average',money(salary/12)],['Annual salary',money(salary)]]);
+   const salary=Math.max(0,num('salary')),hours=Math.max(.01,num('hours',40)),weeks=Math.max(.01,num('weeks',52)),annualHours=hours*weeks,hourly=salary/annualHours;
+   setResult(`${money(hourly)} / hour`,[
+     ['Annual salary',money(salary)],
+     ['Annual work hours',annualHours.toLocaleString('en-US',{maximumFractionDigits:2})+' hrs'],
+     ['Weekly average',money(salary/weeks)],
+     ['Biweekly average',money(salary/26)],
+     ['Semimonthly average',money(salary/24)],
+     ['Monthly average',money(salary/12)],
+     ['8-hour day equivalent',money(hourly*8)],
+     ['Hourly equivalent',money(hourly)+'/hr']
+   ]);
+   const eq=document.getElementById('salaryHourlyEquation');
+   if(eq)eq.textContent=`${money(salary)} ÷ ${annualHours.toLocaleString('en-US',{maximumFractionDigits:2})} annual work hours = ${money(hourly)} per hour.`;
  } else if(id==='timeCard'){
    const elapsed=elapsedHours(val('start'),val('end')),breakMin=Math.max(0,num('break')),net=Math.max(0,elapsed-breakMin/60),rate=num('rate');
    setResult(`${net.toFixed(2)} hours`,[['Elapsed shift',elapsed.toFixed(2)+' hrs'],['Unpaid break',breakMin+' min'],['Net hours',net.toFixed(2)+' hrs'],['Estimated gross pay',money(net*rate)]]);
+ } else if(id==='timeCardWeekly'){
+   calculateWeeklyTimeCard();
+ } else if(id==='semimonthly'){
+   const mode=val('mode'); let pay=0,annual=0;
+   if(mode==='salary'){
+     annual=Math.max(0,num('salary'));
+     pay=annual/24;
+   }else{
+     const rate=Math.max(0,num('rate')),hours=Math.max(0,num('hours',40)),weeks=Math.max(0,num('weeks',52));
+     annual=rate*hours*weeks;
+     pay=annual/24;
+   }
+   setResult(`${money(pay)} / semimonthly paycheck`,[
+     ['Pay periods per year','24'],
+     ['Annualized gross',money(annual)],
+     ['Monthly average',money(annual/12)],
+     ['Biweekly comparison (26)',money(annual/26)]
+   ]);
+ } else if(id==='hoursDecimal'){
+   const h=Math.max(0,num('hoursWhole')),m=Math.min(59,Math.max(0,num('minutesPart'))),decimal=h+m/60;
+   setResult(`${decimal.toFixed(2)} decimal hours`,[
+     ['Hours',h.toFixed(0)],
+     ['Minutes',m.toFixed(0)],
+     ['Decimal hours',decimal.toFixed(4)],
+     ['Payroll hundredths',decimal.toFixed(2)]
+   ]);
  } else if(id==='workHours'){
    const shift=num('shift'),breakMin=num('break'),days=num('days'),netShift=Math.max(0,shift-breakMin/60),week=netShift*days;
    setResult(`${week.toFixed(2)} hours / week`,[['Net hours per shift',netShift.toFixed(2)],['Days per week',days.toFixed(0)],['Weekly net hours',week.toFixed(2)]]);
@@ -56,7 +93,7 @@ function calculate(){
 }
 document.addEventListener('input',calculate);
 document.addEventListener('change',e=>{if(e.target.id==='mode'){const salary=document.getElementById('salaryFields'),hourly=document.getElementById('hourlyFields');if(salary&&hourly){salary.hidden=e.target.value!=='salary';hourly.hidden=e.target.value!=='hourly'}}calculate()});
-document.addEventListener('DOMContentLoaded',()=>{const m=document.getElementById('mode');if(m)m.dispatchEvent(new Event('change'));if(document.body.dataset.calculator==='overtime')initOvertimePage();if(document.body.dataset.calculator==='hourlySalary')initHourlySalaryPage();calculate()});
+document.addEventListener('DOMContentLoaded',()=>{const m=document.getElementById('mode');if(m)m.dispatchEvent(new Event('change'));if(document.body.dataset.calculator==='overtime')initOvertimePage();if(document.body.dataset.calculator==='hourlySalary')initHourlySalaryPage();if(document.body.dataset.calculator==='timeCardWeekly')initWeeklyTimeCard();calculate()});
 
 document.addEventListener('click',async e=>{
  if(e.target.matches('[data-print-result]')){window.print();return}
@@ -74,6 +111,10 @@ document.addEventListener('click',async e=>{
  if(e.target.matches('[data-focus-hourly-result]')){document.getElementById('hourlyResultPanel')?.scrollIntoView({behavior:'smooth',block:'start'});return}
  if(e.target.matches('[data-reset-hourly]')){resetHourlySalary();return}
  if(e.target.matches('[data-share-hourly]')){const url=buildHourlySalaryShareUrl();try{await navigator.clipboard.writeText(url);setHourlyShareStatus('Share link copied.')}catch{setHourlyShareStatus('Copy this URL from your address bar: '+url)}return}
+ if(e.target.matches('[data-salary-preset]')){const s=document.getElementById('salary');if(s){s.value=e.target.dataset.salaryPreset;calculate();document.getElementById('calculator')?.scrollIntoView({behavior:'smooth',block:'start'})}return}
+ if(e.target.matches('[data-timecard-reset]')){resetWeeklyTimeCard();return}
+ if(e.target.matches('[data-timecard-preset]')){loadStandardTimeCard();return}
+ if(e.target.matches('[data-export-timecard]')){exportWeeklyTimeCard();return}
  if(e.target.matches('[data-copy-result]')){
    const headline=document.getElementById('headline')?.textContent||'';
    const rows=[...document.querySelectorAll('#breakdown div')].map(x=>x.innerText.replace(/\n/g,': ')).join('\n');
@@ -81,6 +122,91 @@ document.addEventListener('click',async e=>{
    try{await navigator.clipboard.writeText(text);e.target.textContent='Copied';setTimeout(()=>e.target.textContent='Copy result',1400)}catch{}
  }
 });
+
+
+const TIMECARD_DAYS=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+
+function initWeeklyTimeCard(){
+ const tbody=document.getElementById('timecardRows'); if(!tbody)return;
+ if(tbody.children.length)return;
+ tbody.innerHTML=TIMECARD_DAYS.map((day,i)=>{
+   const on=i<5;
+   return `<tr data-tc-row="${i}">
+     <th scope="row">${day}</th>
+     <td><input aria-label="${day} clock in" class="tc-input" id="tcStart${i}" type="time" value="${on?'09:00':''}"></td>
+     <td><input aria-label="${day} clock out" class="tc-input" id="tcEnd${i}" type="time" value="${on?'17:30':''}"></td>
+     <td><input aria-label="${day} unpaid break minutes" class="tc-break" id="tcBreak${i}" type="number" min="0" step="5" value="${on?'30':'0'}"></td>
+     <td><strong id="tcPaid${i}">${on?'8.00':'0.00'} h</strong></td>
+   </tr>`;
+ }).join('');
+}
+
+function getWeeklyTimeCard(){
+ let total=0,workedDays=0,breakMinutes=0;
+ const rows=TIMECARD_DAYS.map((day,i)=>{
+   const start=val('tcStart'+i),end=val('tcEnd'+i),br=Math.max(0,num('tcBreak'+i));
+   const elapsed=(start&&end)?elapsedHours(start,end):0;
+   const net=(start&&end)?Math.max(0,elapsed-br/60):0;
+   const paid=document.getElementById('tcPaid'+i); if(paid)paid.textContent=net.toFixed(2)+' h';
+   if(start&&end){workedDays++;breakMinutes+=br}
+   total+=net;
+   return {day,start,end,breakMinutes:br,elapsed,net};
+ });
+ return {rows,total,workedDays,breakMinutes};
+}
+
+function hoursMinutes(decimal){
+ const totalMins=Math.round(decimal*60),h=Math.floor(totalMins/60),m=totalMins%60;
+ return `${h}h ${String(m).padStart(2,'0')}m`;
+}
+
+function calculateWeeklyTimeCard(){
+ initWeeklyTimeCard();
+ const data=getWeeklyTimeCard(),rate=Math.max(0,num('rate')),threshold=Math.max(0,num('tcThreshold',40)),mult=Math.max(1,num('tcMultiplier',1.5));
+ const regH=Math.min(data.total,threshold),otH=Math.max(0,data.total-threshold),regularPay=regH*rate,otPay=otH*rate*mult,totalPay=regularPay+otPay;
+ setResult(`${hoursMinutes(data.total)} (${data.total.toFixed(2)} hrs)`,[
+   ['Worked days',String(data.workedDays)],
+   ['Unpaid breaks',data.breakMinutes+' min'],
+   ['Regular hours',regH.toFixed(2)+' hrs'],
+   ['Overtime hours',otH.toFixed(2)+' hrs'],
+   ['Decimal hours',data.total.toFixed(2)],
+   ['Regular pay',money(regularPay)],
+   ['Overtime pay',money(otPay)],
+   ['Estimated gross pay',money(totalPay)]
+ ]);
+}
+
+function resetWeeklyTimeCard(){
+ TIMECARD_DAYS.forEach((_,i)=>{
+   const s=document.getElementById('tcStart'+i),e=document.getElementById('tcEnd'+i),b=document.getElementById('tcBreak'+i);
+   if(s)s.value=''; if(e)e.value=''; if(b)b.value='0';
+ });
+ const r=document.getElementById('rate'); if(r)r.value='20';
+ const t=document.getElementById('tcThreshold'); if(t)t.value='40';
+ const m=document.getElementById('tcMultiplier'); if(m)m.value='1.5';
+ calculate();
+}
+
+function loadStandardTimeCard(){
+ TIMECARD_DAYS.forEach((_,i)=>{
+   const s=document.getElementById('tcStart'+i),e=document.getElementById('tcEnd'+i),b=document.getElementById('tcBreak'+i);
+   const on=i<5;
+   if(s)s.value=on?'09:00':''; if(e)e.value=on?'17:30':''; if(b)b.value=on?'30':'0';
+ });
+ calculate();
+}
+
+function exportWeeklyTimeCard(){
+ const d=getWeeklyTimeCard(),rate=Math.max(0,num('rate'));
+ const lines=[['Day','Clock in','Clock out','Unpaid break (min)','Paid hours']];
+ d.rows.forEach(r=>lines.push([r.day,r.start,r.end,r.breakMinutes,r.net.toFixed(2)]));
+ lines.push([]);
+ lines.push(['Weekly total','','','',d.total.toFixed(2)]);
+ lines.push(['Hourly rate','','','',rate.toFixed(2)]);
+ const csv=lines.map(row=>row.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\n');
+ const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
+ const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='workpay-time-card.csv';a.click();URL.revokeObjectURL(url);
+}
 
 function calculateOvertimeModel(rate,hours,threshold,mult,mode='basic',bonus=0){
  const safeRate=Math.max(0,rate),safeHours=Math.max(0,hours),safeThreshold=Math.max(0,threshold),safeMult=Math.max(1,mult),safeBonus=Math.max(0,bonus);

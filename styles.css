@@ -176,3 +176,22 @@ body[data-calculator="overtime"] .content-card{border-radius:16px;box-shadow:0 8
 .seo-topic-grid .content-card{min-height:100%}
 #pay-period-guide .hourly-content-grid{margin-top:1rem}
 @media(max-width:720px){.seo-conversion-section .table-scroll,#hours-per-week .table-scroll{margin-inline:-.25rem}.hourly-jump{overflow-x:auto;white-space:nowrap}}
+
+
+/* V7.0 time-card + salary expansion */
+.calc-title-row{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.compact-actions,.preset-row{display:flex;gap:8px;flex-wrap:wrap}
+.preset-block{margin:0 0 18px}.preset-label{display:block;font-size:.75rem;font-weight:800;color:#526277;margin-bottom:8px}
+.timecard-table-wrap{overflow-x:auto;margin:18px 0}
+.timecard-table{width:100%;border-collapse:collapse;min-width:690px}
+.timecard-table th,.timecard-table td{padding:10px;border-bottom:1px solid #dce6f0;text-align:left}
+.timecard-table thead th{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:#64748b}
+.timecard-table input{width:100%;min-width:105px;padding:10px;border:1px solid #cbd8e6;border-radius:10px;background:#fff}
+.timecard-pay-fields{margin-top:18px}
+.live-formula{margin-top:14px;padding:14px 16px;border:1px solid #d9e4f0;border-radius:12px;background:#f7fbff}
+.live-formula strong,.live-formula span{display:block}.live-formula span{margin-top:5px;color:#5d6f82;font-size:.84rem}
+.answer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+.answer-box{padding:18px;border:1px solid #d9e4f0;border-radius:14px;background:#f8fbff}
+.answer-box span{display:block;color:#5d6f82;font-size:.78rem}.answer-box strong{display:block;margin-top:5px;font-size:1.2rem;color:#0b1f3a}
+@media(max-width:760px){.calc-title-row{flex-direction:column}.answer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.answer-grid{grid-template-columns:1fr}}

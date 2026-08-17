@@ -154,6 +154,76 @@
       "source": "/calculators/work-hours.html",
       "destination": "/calculators/work-hours",
       "permanent": true
+    },
+    {
+      "source": "/15-an-hour-is-how-much-a-year.html",
+      "destination": "/15-an-hour-is-how-much-a-year",
+      "permanent": true
+    },
+    {
+      "source": "/20-an-hour-is-how-much-a-year.html",
+      "destination": "/20-an-hour-is-how-much-a-year",
+      "permanent": true
+    },
+    {
+      "source": "/25-an-hour-is-how-much-a-year.html",
+      "destination": "/25-an-hour-is-how-much-a-year",
+      "permanent": true
+    },
+    {
+      "source": "/30-an-hour-is-how-much-a-year.html",
+      "destination": "/30-an-hour-is-how-much-a-year",
+      "permanent": true
+    },
+    {
+      "source": "/35-an-hour-is-how-much-a-year.html",
+      "destination": "/35-an-hour-is-how-much-a-year",
+      "permanent": true
+    },
+    {
+      "source": "/40-an-hour-is-how-much-a-year.html",
+      "destination": "/40-an-hour-is-how-much-a-year",
+      "permanent": true
+    },
+    {
+      "source": "/calculators/semimonthly-pay.html",
+      "destination": "/calculators/semimonthly-pay",
+      "permanent": true
+    },
+    {
+      "source": "/calculators/hours-to-decimal.html",
+      "destination": "/calculators/hours-to-decimal",
+      "permanent": true
+    },
+    {
+      "source": "/40000-salary-to-hourly.html",
+      "destination": "/40000-salary-to-hourly",
+      "permanent": true
+    },
+    {
+      "source": "/50000-salary-to-hourly.html",
+      "destination": "/50000-salary-to-hourly",
+      "permanent": true
+    },
+    {
+      "source": "/60000-salary-to-hourly.html",
+      "destination": "/60000-salary-to-hourly",
+      "permanent": true
+    },
+    {
+      "source": "/70000-salary-to-hourly.html",
+      "destination": "/70000-salary-to-hourly",
+      "permanent": true
+    },
+    {
+      "source": "/80000-salary-to-hourly.html",
+      "destination": "/80000-salary-to-hourly",
+      "permanent": true
+    },
+    {
+      "source": "/100000-salary-to-hourly.html",
+      "destination": "/100000-salary-to-hourly",
+      "permanent": true
     }
   ]
 }

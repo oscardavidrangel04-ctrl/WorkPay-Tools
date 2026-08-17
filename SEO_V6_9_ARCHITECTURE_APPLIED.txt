@@ -1,0 +1,27 @@
+WorkPay Tools V6.9 — SEO Keyword Architecture Applied
+Updated: 2026-08-17
+
+Applied the 2026 keyword architecture to all 13 calculator pages.
+
+Implemented:
+- One primary search intent per calculator.
+- Revised title, H1, meta description and opening copy.
+- Added page-specific scope sections to clarify intent ownership.
+- Rebuilt Related Calculators links from the keyword architecture.
+- Updated WebPage/WebApplication schema names/descriptions.
+- Added intent-based navigation to /calculators.
+- Preserved calculator-first UX and existing calculators.
+
+Cannibalization rules reflected on-site:
+- Hourly to Salary = hourly → salary.
+- Salary to Hourly = salary → hourly.
+- Annual Income = yearly-income planning.
+- Monthly Income = average monthly-income intent.
+- Overtime Pay = time-and-a-half / overtime mechanics.
+- Weekly Pay = total weekly gross pay.
+- Double Time = 2× premium pay.
+- Time Card = clock-in / clock-out.
+- Work Hours = shift duration + breaks.
+- PTO Value = payout/value estimate, not PTO accrual.
+
+No keyword volume, KD, CPC or trend figures were invented.
