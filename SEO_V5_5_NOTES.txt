@@ -1,0 +1,15 @@
+WorkPay Tools V5.5 — Overtime SEO Deep Upgrade
+
+Updated: 2026-08-17
+
+- Reworked title and meta description around Overtime Pay Calculator, time-and-a-half and weekly pay intent.
+- Added Twitter metadata and refreshed Open Graph copy.
+- Rebuilt JSON-LD graph with WebPage, WebApplication, BreadcrumbList and FAQ that matches visible content.
+- Added concise above-the-fold answer for overtime formula and a static worked example.
+- Expanded formula section with step-by-step calculation.
+- Added static 45/50/55/60-hour examples crawlable without JavaScript.
+- Added Hours Worked section linked to DOL Fact Sheet #22.
+- Improved semantic H2s, internal links and related calculator anchors.
+- Updated federal/IRS wording conservatively and kept primary-source links.
+- Added content-review metadata and updated sitemap lastmod for overtime URL.
+- Preserved calculator functionality, interface, advanced mode, chart, local storage and share URLs.
