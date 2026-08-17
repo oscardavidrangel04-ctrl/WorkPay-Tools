@@ -21,8 +21,9 @@ function calculate(){
      setResult(`${money(reg+ot)} / week`,[['Regular hourly rate',money(rate)+'/hr'],['Regular hours',regH.toFixed(2)],['Overtime hours',otH.toFixed(2)],['Overtime rate',money(rate*mult)+'/hr'],['Regular pay',money(reg)],['Overtime pay',money(ot)],['Total gross pay',money(reg+ot)]]);
    }
  } else if(id==='hourlySalary'){
-   const rate=num('rate'),hours=num('hours'),weeks=num('weeks',52),weekly=rate*hours,annual=weekly*weeks;
-   setResult(`${money(annual)} / year`,[['Weekly pay',money(weekly)],['Monthly average',money(annual/12)],['Annual pay',money(annual)]]);
+   const rate=Math.max(0,num('rate')),hours=Math.max(0,num('hours')),weeks=Math.min(53,Math.max(0,num('weeks',52))),weekly=rate*hours,annual=weekly*weeks;
+   setResult(`${money(annual)} / year`,[['Hourly rate',money(rate)+'/hr'],['Paid hours / week',hours.toFixed(2)],['Paid weeks / year',weeks.toFixed(0)],['Weekly gross',money(weekly)],['Biweekly average',money(annual/26)],['Semimonthly average',money(annual/24)],['Monthly average',money(annual/12)],['Annual gross pay',money(annual)]]);
+   updateHourlySalaryPage(rate,hours,weeks,weekly,annual);
  } else if(id==='salaryHourly'){
    const salary=num('salary'),hours=Math.max(.01,num('hours',40)),weeks=Math.max(.01,num('weeks',52)),hourly=salary/(hours*weeks);
    setResult(`${money(hourly)} / hour`,[['Weekly average',money(salary/weeks)],['Monthly average',money(salary/12)],['Annual salary',money(salary)]]);
@@ -55,7 +56,7 @@ function calculate(){
 }
 document.addEventListener('input',calculate);
 document.addEventListener('change',e=>{if(e.target.id==='mode'){const salary=document.getElementById('salaryFields'),hourly=document.getElementById('hourlyFields');if(salary&&hourly){salary.hidden=e.target.value!=='salary';hourly.hidden=e.target.value!=='hourly'}}calculate()});
-document.addEventListener('DOMContentLoaded',()=>{const m=document.getElementById('mode');if(m)m.dispatchEvent(new Event('change'));if(document.body.dataset.calculator==='overtime')initOvertimePage();calculate()});
+document.addEventListener('DOMContentLoaded',()=>{const m=document.getElementById('mode');if(m)m.dispatchEvent(new Event('change'));if(document.body.dataset.calculator==='overtime')initOvertimePage();if(document.body.dataset.calculator==='hourlySalary')initHourlySalaryPage();calculate()});
 
 document.addEventListener('click',async e=>{
  if(e.target.matches('[data-print-result]')){window.print();return}
@@ -67,6 +68,12 @@ document.addEventListener('click',async e=>{
  if(e.target.matches('[data-use-multi-rate]')){applyMultiRateWorkweek();return}
  if(e.target.matches('[data-reset-overtime]')){resetOvertime();return}
  if(e.target.matches('[data-share-result]')){const url=buildOvertimeShareUrl();try{await navigator.clipboard.writeText(url);setShareStatus('Share link copied.')}catch{setShareStatus('Copy this URL from your address bar: '+url)}return}
+ if(e.target.matches('[data-hourly-hours]')){const el=document.getElementById('hours');if(el){el.value=e.target.dataset.hourlyHours;calculate();syncHourlyPresets()}return}
+ if(e.target.matches('[data-hourly-weeks]')){const el=document.getElementById('weeks');if(el){el.value=e.target.dataset.hourlyWeeks;calculate();syncHourlyPresets()}return}
+ if(e.target.matches('[data-hourly-rate]')){const rate=document.getElementById('rate'),hours=document.getElementById('hours'),weeks=document.getElementById('weeks');if(rate)rate.value=e.target.dataset.hourlyRate;if(hours)hours.value=40;if(weeks)weeks.value=52;calculate();syncHourlyPresets();document.getElementById('calculator')?.scrollIntoView({behavior:'smooth',block:'start'});return}
+ if(e.target.matches('[data-focus-hourly-result]')){document.getElementById('hourlyResultPanel')?.scrollIntoView({behavior:'smooth',block:'start'});return}
+ if(e.target.matches('[data-reset-hourly]')){resetHourlySalary();return}
+ if(e.target.matches('[data-share-hourly]')){const url=buildHourlySalaryShareUrl();try{await navigator.clipboard.writeText(url);setHourlyShareStatus('Share link copied.')}catch{setHourlyShareStatus('Copy this URL from your address bar: '+url)}return}
  if(e.target.matches('[data-copy-result]')){
    const headline=document.getElementById('headline')?.textContent||'';
    const rows=[...document.querySelectorAll('#breakdown div')].map(x=>x.innerText.replace(/\n/g,': ')).join('\n');
@@ -214,3 +221,34 @@ function updateResultInsight(rate,hours,threshold,mult,mode,r){
 
 document.addEventListener('click',e=>{const focus=e.target.closest('[data-focus-result]');if(focus){document.getElementById('resultPanel')?.scrollIntoView({behavior:'smooth',block:'start'});}const preset=e.target.closest('[data-hours-preset]');if(preset)setTimeout(syncHourPresetState,0);});
 document.getElementById('hours')?.addEventListener('input',syncHourPresetState);
+
+
+/* Hourly to Salary flagship V6.4 */
+const HOURLY_SALARY_STATE_KEY='workpay:hourly-salary:v64';
+function updateHourlySalaryPage(rate,hours,weeks,weekly,annual){
+ const set=(id,text)=>{const el=document.getElementById(id);if(el)el.textContent=text};
+ set('hourlyWeekly',money(weekly));set('hourlyBiweekly',money(annual/26));set('hourlySemimonthly',money(annual/24));set('hourlyMonthly',money(annual/12));
+ const annualHours=hours*weeks;set('hourlyAnnualHours',annualHours.toLocaleString('en-US',{maximumFractionDigits:2})+' hours');
+ const bar=document.getElementById('hourlyHoursBar');if(bar)bar.style.width=Math.min(100,annualHours/2080*100)+'%';
+ const insight=document.getElementById('hourlyResultInsight');if(insight){
+   if(rate<=0||hours<=0||weeks<=0) insight.textContent='Enter an hourly rate, weekly hours and paid weeks to see a meaningful annualized estimate.';
+   else insight.textContent=`At ${money(rate)}/hour for ${hours.toFixed(2)} paid hours per week and ${weeks.toFixed(0)} paid weeks, estimated annual gross pay is ${money(annual)}. That averages ${money(annual/12)} per month before taxes and deductions.`;
+ }
+ const guide=document.getElementById('hourlyGuidance');if(guide){let text='',kind='good';if(hours>168){text='A seven-day week contains 168 hours. Double-check the weekly hours entered.';kind='warn'}else if(weeks>53){text='Paid weeks should normally be 53 or fewer. Check the value entered.';kind='warn'}else if(rate===0){text='Enter an hourly rate above $0 to calculate earnings.';kind='warn'}else if(hours===0||weeks===0){text='Hours and paid weeks must be above zero for an annualized estimate.';kind='warn'}else if(hours>40){text='This single-rate conversion does not add an overtime premium. If overtime applies, use the Overtime Pay Calculator.';kind='warn'}else if(weeks<52){text=`This scenario models ${52-weeks} week${Math.abs(52-weeks)===1?'':'s'} outside a 52-week paid year.`;kind='good'}else{text='This scenario assumes one regular hourly rate across the paid schedule entered.';kind='good'}guide.innerHTML=`<div class="guidance-item ${kind}">${text}</div>`;}
+ updateHourlyRateComparison(rate,hours,weeks,annual);syncHourlyPresets();saveHourlySalaryState();
+}
+function updateHourlyRateComparison(rate,hours,weeks,currentAnnual){
+ const set=(id,text)=>{const el=document.getElementById(id);if(el)el.textContent=text};
+ const scenarios=[[0,'Current'],[1,'Plus1'],[2,'Plus2'],[5,'Plus5']];
+ scenarios.forEach(([inc,key])=>{const r=rate+inc,a=r*hours*weeks;set('compare'+key+'Rate',money(r)+'/hr');set('compare'+key+'Annual',money(a)+'/year');if(inc>0)set('compare'+key+'Diff','+'+money(a-currentAnnual)+' / year');});
+}
+function syncHourlyPresets(){
+ const hours=num('hours'),weeks=num('weeks',52);document.querySelectorAll('[data-hourly-hours]').forEach(b=>b.classList.toggle('active',Math.abs(Number(b.dataset.hourlyHours)-hours)<.001));document.querySelectorAll('[data-hourly-weeks]').forEach(b=>b.classList.toggle('active',Math.abs(Number(b.dataset.hourlyWeeks)-weeks)<.001));
+}
+function buildHourlySalaryShareUrl(){const u=new URL(location.href);u.search='';u.searchParams.set('rate',String(Math.max(0,num('rate'))));u.searchParams.set('hours',String(Math.max(0,num('hours'))));u.searchParams.set('weeks',String(Math.max(0,num('weeks',52))));return u.toString()}
+function setHourlyShareStatus(text){const el=document.getElementById('hourlyShareStatus');if(el){el.textContent=text;setTimeout(()=>{if(el.textContent===text)el.textContent=''},2200)}}
+function saveHourlySalaryState(){try{const state={rate:val('rate'),hours:val('hours'),weeks:val('weeks')};localStorage.setItem(HOURLY_SALARY_STATE_KEY,JSON.stringify(state))}catch{}}
+function restoreHourlySalaryState(){if(location.search)return false;try{const raw=localStorage.getItem(HOURLY_SALARY_STATE_KEY);if(!raw)return false;const state=JSON.parse(raw);['rate','hours','weeks'].forEach(id=>{const el=document.getElementById(id);if(el&&state[id]!==undefined)el.value=state[id]});return true}catch{return false}}
+function loadHourlySalaryFromUrl(){const p=new URLSearchParams(location.search);[['rate',0,100000],['hours',0,168],['weeks',0,53]].forEach(([id,min,max])=>{if(!p.has(id))return;const v=parseFloat(p.get(id)),el=document.getElementById(id);if(el&&Number.isFinite(v))el.value=Math.min(max,Math.max(min,v))})}
+function resetHourlySalary(){const defaults={rate:25,hours:40,weeks:52};Object.entries(defaults).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.value=v});try{localStorage.removeItem(HOURLY_SALARY_STATE_KEY)}catch{}history.replaceState(null,'',location.pathname);calculate();syncHourlyPresets();setHourlyShareStatus('Reset to the default example.')}
+function initHourlySalaryPage(){if(!restoreHourlySalaryState())loadHourlySalaryFromUrl();syncHourlyPresets();}

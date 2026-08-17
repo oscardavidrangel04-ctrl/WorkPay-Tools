@@ -1,0 +1,18 @@
+WorkPay Tools V6.3 — Calculators Max Pillar
+
+Built on V6.2.
+Added to /calculators:
+- sticky in-page section navigation
+- 6-step calculator decision guide
+- full 13-tool input/output/use-case comparison matrix
+- hourly wage quick-reference examples ($15-$40)
+- 12 natural-language question links
+- 8-term pay/work-hour glossary
+- deeper accuracy and limitations section
+- 4-step cross-tool pay-planning workflow
+- expanded 10-question FAQ with synchronized FAQPage JSON-LD
+- richer CollectionPage keywords/about context
+- refined meta/OG/Twitter descriptions
+- responsive styles for all new sections
+
+The hub remains focused on broad calculator-library intent; detailed formulas remain on individual calculator pages to reduce cannibalization.

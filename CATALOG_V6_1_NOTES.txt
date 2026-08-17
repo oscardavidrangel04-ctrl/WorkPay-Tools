@@ -1,0 +1,5 @@
+WorkPay Tools V6.1 — Calculator Library Hub
+
+Updated /calculators only, using V6.0 as the base.
+
+Added: smart search + autocomplete/synonyms, category filters, intent shortcuts, hourly/salaried recommendations, recent tools via localStorage, richer cards/examples, Time Card vs Work Hours vs Weekly Pay comparison, popular paths, FAQ + matching FAQPage schema, breadcrumbs, richer footer, mobile treatment, no-JS fallback, and analytics event hooks.

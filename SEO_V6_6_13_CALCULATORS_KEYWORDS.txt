@@ -1,0 +1,80 @@
+WorkPay Tools V6.6 — 13 Calculator Keyword Architecture
+Updated 2026-08-17
+
+annual-income.html
+Primary keyword: annual income calculator
+Title: Annual Income Calculator | Hourly Wage to Yearly Income
+Meta (128 chars): Use our annual income calculator to estimate yearly, monthly and weekly gross income from hourly pay, work hours and paid weeks.
+H1: Annual Income Calculator — Estimate Yearly Gross Income
+
+biweekly-pay.html
+Primary keyword: biweekly pay calculator
+Title: Biweekly Pay Calculator | Estimate 2-Week Gross Pay
+Meta (141 chars): Use our biweekly pay calculator to estimate gross pay every two weeks from annual salary or hourly wages and compare 26-paycheck assumptions.
+H1: Biweekly Pay Calculator — Estimate Your 2-Week Pay
+
+double-time.html
+Primary keyword: double time calculator
+Title: Double Time Calculator | Calculate 2× Hourly Pay
+Meta (122 chars): Use our double time calculator to estimate 2× hourly pay, double-time earnings and total gross pay for premium-rate hours.
+H1: Double Time Calculator — Calculate 2× Hourly Pay
+
+hourly-to-salary.html
+Primary keyword: hourly to salary calculator
+Title: Hourly to Salary Calculator | Hourly Wage to Annual Salary
+Meta (142 chars): Use our hourly to salary calculator to convert hourly wage to weekly, monthly and annual salary. Adjust weekly hours and paid weeks instantly.
+H1: Hourly to Salary Calculator — Convert Hourly Wage to Annual Salary
+
+monthly-income.html
+Primary keyword: monthly income calculator
+Title: Monthly Income Calculator | Estimate Monthly Gross Pay
+Meta (144 chars): Use our monthly income calculator to estimate average monthly gross pay from hourly wages, weekly hours and paid weeks, with yearly equivalents.
+H1: Monthly Income Calculator — Estimate Monthly Gross Pay
+
+overtime-pay.html
+Primary keyword: overtime pay calculator
+Title: Overtime Pay Calculator 2026 | Time-and-a-Half Pay
+Meta (142 chars): Use our overtime pay calculator to estimate overtime hours, time-and-a-half rate and weekly gross pay with basic or advanced pay-rate options.
+H1: Overtime Pay Calculator — Calculate Time-and-a-Half Pay
+
+pay-raise.html
+Primary keyword: pay raise calculator
+Title: Pay Raise Calculator | New Salary & Raise Percentage
+Meta (138 chars): Use our pay raise calculator to estimate your new salary, annual raise amount, monthly increase and biweekly pay after a percentage raise.
+H1: Pay Raise Calculator — Estimate Your New Salary
+
+pto-value.html
+Primary keyword: PTO value calculator
+Title: PTO Value Calculator | Convert Paid Time Off to Dollars
+Meta (138 chars): Use our PTO value calculator to estimate the gross dollar value of paid time off from your hourly rate, PTO hours and equivalent workdays.
+H1: PTO Value Calculator — Estimate Paid Time Off in Dollars
+
+salary-to-hourly.html
+Primary keyword: salary to hourly calculator
+Title: Salary to Hourly Calculator | Convert Annual Salary to Hourly
+Meta (142 chars): Use our salary to hourly calculator to convert annual salary to hourly wage, weekly pay and monthly income using your workweek and paid weeks.
+H1: Salary to Hourly Calculator — Convert Annual Salary to Hourly Pay
+
+shift-differential.html
+Primary keyword: shift differential calculator
+Title: Shift Differential Calculator | Night Shift Premium Pay
+Meta (142 chars): Use our shift differential calculator to estimate night or evening shift premium pay, base earnings and total gross pay from your hourly rate.
+H1: Shift Differential Calculator — Estimate Premium Shift Pay
+
+time-card.html
+Primary keyword: time card calculator
+Title: Time Card Calculator | Hours, Breaks & Gross Shift Pay
+Meta (142 chars): Use our time card calculator to calculate hours worked from clock-in and clock-out times, subtract unpaid breaks and estimate gross shift pay.
+H1: Time Card Calculator — Calculate Hours, Breaks & Gross Pay
+
+weekly-pay.html
+Primary keyword: weekly pay calculator
+Title: Weekly Pay Calculator | Regular & Overtime Gross Pay
+Meta (135 chars): Use our weekly pay calculator to estimate regular pay, overtime hours, overtime rate and total weekly gross earnings from hourly wages.
+H1: Weekly Pay Calculator — Estimate Regular & Overtime Pay
+
+work-hours.html
+Primary keyword: work hours calculator
+Title: Work Hours Calculator | Weekly Hours After Breaks
+Meta (136 chars): Use our work hours calculator to estimate paid hours per shift and total weekly work hours after unpaid breaks across multiple workdays.
+H1: Work Hours Calculator — Calculate Weekly Hours After Breaks
