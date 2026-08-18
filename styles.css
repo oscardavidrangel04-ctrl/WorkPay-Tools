@@ -233,3 +233,13 @@ body[data-calculator="overtime"] .content-card{border-radius:16px;box-shadow:0 8
 .job-compare-verdict{margin-top:16px;padding:16px;border-radius:12px;background:#f4f8ff;border:1px solid #d8e5f5}
 .job-compare-verdict p{margin:6px 0 0;color:#526277}
 @media(max-width:760px){.job-compare-grid{grid-template-columns:1fr}}
+
+
+/* V7.6 — Indexability push */
+.priority-indexation-tools{margin:24px 0}
+.priority-link-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
+.priority-link-card{display:block;padding:16px;border:1px solid #d9e4f0;border-radius:14px;background:#fbfdff;text-decoration:none}
+.priority-link-card strong,.priority-link-card span{display:block}
+.priority-link-card span{margin-top:5px;color:#5d6f82;font-size:.88rem}
+.crawl-priority-links{margin-top:24px}
+@media(max-width:700px){.priority-link-grid{grid-template-columns:1fr}}
