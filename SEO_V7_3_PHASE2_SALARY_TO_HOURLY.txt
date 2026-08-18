@@ -1,0 +1,20 @@
+WorkPay Tools V7.3 — Phase 2 of 4
+URL improved: /calculators/salary-to-hourly
+Updated: 2026-08-18
+
+Implemented:
+- Added optional Actual hours worked per week.
+- Added Contract hourly equivalent vs Effective hourly rate.
+- Shows difference per hour, annual hours, extra annual hours and annual value gap.
+- Added dynamic explanation of why effective hourly rate rises/falls.
+- Added salaried job vs hourly job comparison.
+- Hourly comparison uses the same paid weeks as the main calculator.
+- Preserved Annual / Monthly / Weekly salary input.
+- Preserved 35h / 37.5h / 40h comparison and salary long-tail cluster.
+- Updated title/meta/schema for this URL only.
+
+Not changed in this phase:
+- Time Card beyond Phase 1.
+- Overtime Pay.
+- Hourly to Salary.
+- Sitemap URL count unchanged.

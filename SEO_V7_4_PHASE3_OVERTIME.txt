@@ -1,0 +1,22 @@
+WorkPay Tools V7.4 — Phase 3 of 4
+URL improved: /calculators/overtime-pay
+Updated: 2026-08-18
+
+Implemented:
+- Added “Explain my overtime result”.
+- Explains overtime hours from total hours minus threshold.
+- Explains overtime-rate calculation.
+- Separates straight-time compensation from overtime premium.
+- Explains how weekly gross pay is built.
+- Adds a personalized explanation of why the overtime rate may differ from base rate × multiplier.
+- Advanced mode explains the effect of eligible additional compensation on estimated regular rate.
+- Added live Basic vs Advanced total comparison.
+- Added explicit no-overtime state when hours do not exceed threshold.
+- Preserved existing multi-rate, daily hours, scenario comparison, premium tracker and official DOL sources.
+- Updated title/meta/schema for this URL only.
+
+Not changed in this phase:
+- Time Card beyond Phase 1.
+- Salary to Hourly beyond Phase 2.
+- Hourly to Salary.
+- Sitemap URL count unchanged.

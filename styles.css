@@ -195,3 +195,41 @@ body[data-calculator="overtime"] .content-card{border-radius:16px;box-shadow:0 8
 .answer-box span{display:block;color:#5d6f82;font-size:.78rem}.answer-box strong{display:block;margin-top:5px;font-size:1.2rem;color:#0b1f3a}
 @media(max-width:760px){.calc-title-row{flex-direction:column}.answer-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){.answer-grid{grid-template-columns:1fr}}
+
+
+/* V7.2 Phase 1 — Time Card weekly insights */
+.timecard-insights{margin-top:18px;padding:18px;border:1px solid #d9e4f0;border-radius:16px;background:#fbfdff}
+.timecard-insights h3{margin:0 0 8px}
+.timecard-insights>p{margin-top:0;color:#5d6f82}
+.timecard-alerts{display:grid;gap:8px;margin-top:14px}
+.timecard-alert{padding:11px 13px;border-radius:10px;background:#fff8e8;border:1px solid #f1d38b;font-size:.9rem}
+.timecard-alert.ok{background:#f2fbf5;border-color:#b9dfc3}
+
+
+/* V7.3 Phase 2 — Salary to Hourly effective rate */
+.effective-hourly-panel{margin-top:18px;padding:18px;border:1px solid #d9e4f0;border-radius:16px;background:#fbfdff}
+.effective-hourly-panel h3{margin:0 0 8px}
+.effective-hourly-panel>p{margin-top:0;color:#5d6f82}
+
+
+/* V7.4 Phase 3 — Overtime result explanation */
+.overtime-explain-panel{margin-top:18px;padding:20px;border:1px solid #d9e4f0;border-radius:16px;background:#fbfdff}
+.explain-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+.explain-head h3{margin:2px 0 0}
+.explain-mode{padding:6px 10px;border-radius:999px;background:#eef5ff;font-size:.78rem;font-weight:800;white-space:nowrap}
+.explain-steps{display:grid;gap:10px;margin-top:16px}
+.explain-step{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;padding:12px;border:1px solid #e2eaf3;border-radius:12px;background:#fff}
+.explain-step>span{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#edf4ff;font-weight:800}
+.explain-step strong{display:block}.explain-step p{margin:4px 0 0;color:#5d6f82}
+.overtime-reason-box{margin-top:14px;padding:14px;border-radius:12px;background:#f5f9ff;border:1px solid #d8e6f5}
+.overtime-reason-box p{margin:5px 0 0}
+@media(max-width:620px){.explain-head{flex-direction:column}.explain-mode{white-space:normal}}
+
+
+/* V7.5 Phase 4 — Hourly to Salary job comparison */
+.job-compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+.job-compare-card{padding:16px;border:1px solid #d9e4f0;border-radius:14px;background:#fbfdff}
+.job-compare-card h3{margin-top:0}
+.job-compare-verdict{margin-top:16px;padding:16px;border-radius:12px;background:#f4f8ff;border:1px solid #d8e5f5}
+.job-compare-verdict p{margin:6px 0 0;color:#526277}
+@media(max-width:760px){.job-compare-grid{grid-template-columns:1fr}}

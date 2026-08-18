@@ -15,6 +15,12 @@ function calculate(){
      if(mode==='advanced'){rows.push(['Eligible additional compensation',money(bonus)],['Estimated regular rate',money(r.regularRate)+'/hr']);}
      rows.push(['Regular / straight-time pay',money(r.straightTime)],['Overtime premium',money(r.overtimePremium)],['Total gross pay',money(r.total)]);
      setResult(`${money(r.total)} / week`,rows);
+     const qRate=document.getElementById('otQuickRate'),qHours=document.getElementById('otQuickHours'),qPremium=document.getElementById('otQuickPremium');
+     if(qRate)qRate.textContent=money(r.overtimeRate)+'/hr';
+     if(qHours)qHours.textContent=r.overtimeHours.toFixed(2)+' hrs';
+     if(qPremium)qPremium.textContent=money(r.overtimePremium);
+     updateOvertimeExplanation(rate,hours,threshold,mult,mode,bonus,r);
+     updateBasicAdvancedComparison(rate,hours,threshold,mult,bonus);
      updateOvertimeComparison(r); updateOvertimeExtras(rate,threshold,mult,mode,bonus); updateScenarioComparison(rate,threshold,mult,mode,bonus,r); updatePremiumTracker(r); updateMultiRateSummary(); updateOvertimeGuidance(rate,hours,threshold,mult,mode,bonus,r); updateResultInsight(rate,hours,threshold,mult,mode,r); saveOvertimeState();
    } else {
      const regH=Math.min(hours,threshold),otH=Math.max(0,hours-threshold),reg=regH*rate,ot=otH*rate*mult;
@@ -23,11 +29,26 @@ function calculate(){
  } else if(id==='hourlySalary'){
    const rate=Math.max(0,num('rate')),hours=Math.max(0,num('hours')),weeks=Math.min(53,Math.max(0,num('weeks',52))),weekly=rate*hours,annual=weekly*weeks;
    setResult(`${money(annual)} / year`,[['Hourly rate',money(rate)+'/hr'],['Paid hours / week',hours.toFixed(2)],['Paid weeks / year',weeks.toFixed(0)],['Weekly gross',money(weekly)],['Biweekly average',money(annual/26)],['Semimonthly average',money(annual/24)],['Monthly average',money(annual/12)],['Annual gross pay',money(annual)]]);
+   const annualHours=hours*weeks,diff=annualHours-2080,annualEl=document.getElementById('annualPaidHours'),diffEl=document.getElementById('annualHoursDifference'),assumption=document.getElementById('hourlyAssumptionText');
+   if(annualEl)annualEl.textContent=annualHours.toLocaleString('en-US',{maximumFractionDigits:2})+' h';
+   if(diffEl)diffEl.textContent=(diff>0?'+':'')+diff.toLocaleString('en-US',{maximumFractionDigits:2})+' h';
+   if(assumption)assumption.textContent=`Your inputs use ${annualHours.toLocaleString('en-US',{maximumFractionDigits:2})} paid hours per year. The familiar 2,080-hour shortcut assumes exactly 40 hours per week for 52 weeks.`;
+   const h35=document.getElementById('hourly35Annual'),h375=document.getElementById('hourly375Annual'),h40=document.getElementById('hourly40Annual');
+   if(h35)h35.textContent=money(rate*35*weeks)+'/yr';
+   if(h375)h375.textContent=money(rate*37.5*weeks)+'/yr';
+   if(h40)h40.textContent=money(rate*40*weeks)+'/yr';
+   updateHourlyJobComparison();
    updateHourlySalaryPage(rate,hours,weeks,weekly,annual);
  } else if(id==='salaryHourly'){
-   const salary=Math.max(0,num('salary')),hours=Math.max(.01,num('hours',40)),weeks=Math.max(.01,num('weeks',52)),annualHours=hours*weeks,hourly=salary/annualHours;
+   const amount=Math.max(0,num('salary')),frequency=val('salaryFrequency')||'annual',hours=Math.max(.01,num('hours',40)),weeks=Math.max(.01,num('weeks',52));
+   const salary=frequency==='monthly'?amount*12:frequency==='weekly'?amount*weeks:amount;
+   const annualHours=hours*weeks,hourly=salary/annualHours;
+   const actualHours=Math.max(.01,num('actualHours',hours)),effectiveAnnualHours=actualHours*weeks,effectiveHourly=salary/effectiveAnnualHours;
+   const hourlyDiff=effectiveHourly-hourly,annualGap=Math.abs(hourlyDiff)*effectiveAnnualHours;
+
    setResult(`${money(hourly)} / hour`,[
-     ['Annual salary',money(salary)],
+     ['Input frequency',frequency.charAt(0).toUpperCase()+frequency.slice(1)],
+     ['Annualized salary',money(salary)],
      ['Annual work hours',annualHours.toLocaleString('en-US',{maximumFractionDigits:2})+' hrs'],
      ['Weekly average',money(salary/weeks)],
      ['Biweekly average',money(salary/26)],
@@ -36,8 +57,48 @@ function calculate(){
      ['8-hour day equivalent',money(hourly*8)],
      ['Hourly equivalent',money(hourly)+'/hr']
    ]);
+
    const eq=document.getElementById('salaryHourlyEquation');
-   if(eq)eq.textContent=`${money(salary)} ÷ ${annualHours.toLocaleString('en-US',{maximumFractionDigits:2})} annual work hours = ${money(hourly)} per hour.`;
+   if(eq)eq.textContent=`${money(salary)} annualized ÷ ${annualHours.toLocaleString('en-US',{maximumFractionDigits:2})} annual work hours = ${money(hourly)} per hour.`;
+
+   const s35=document.getElementById('salary35'),s375=document.getElementById('salary375'),s40=document.getElementById('salary40');
+   if(s35)s35.textContent=money(salary/(35*52))+'/hr';
+   if(s375)s375.textContent=money(salary/(37.5*52))+'/hr';
+   if(s40)s40.textContent=money(salary/(40*52))+'/hr';
+
+   const cH=document.getElementById('contractHourly'),eH=document.getElementById('effectiveHourly'),eD=document.getElementById('effectiveHourlyDiff'),
+         eAH=document.getElementById('effectiveAnnualHours'),eEH=document.getElementById('effectiveExtraHours'),eAG=document.getElementById('effectiveAnnualGap'),
+         eS=document.getElementById('effectiveHourlySummary');
+   if(cH)cH.textContent=money(hourly)+'/hr';
+   if(eH)eH.textContent=money(effectiveHourly)+'/hr';
+   if(eD)eD.textContent=(hourlyDiff>=0?'+':'−')+money(Math.abs(hourlyDiff))+'/hr';
+   if(eAH)eAH.textContent=effectiveAnnualHours.toLocaleString('en-US',{maximumFractionDigits:2})+' h';
+   if(eEH){
+     const extra=(actualHours-hours)*weeks;
+     eEH.textContent=(extra>=0?'+':'−')+Math.abs(extra).toLocaleString('en-US',{maximumFractionDigits:2})+' h/year';
+   }
+   if(eAG)eAG.textContent=money(annualGap);
+   if(eS){
+     if(Math.abs(actualHours-hours)<0.001){
+       eS.textContent=`Your actual-hours comparison matches the ${hours.toFixed(2)}-hour schedule used for the standard conversion, so both hourly values are the same.`;
+     }else if(actualHours>hours){
+       eS.textContent=`At ${actualHours.toFixed(2)} actual hours per week, the same salary is spread across more hours, reducing the effective hourly value from ${money(hourly)} to ${money(effectiveHourly)}.`;
+     }else{
+       eS.textContent=`At ${actualHours.toFixed(2)} actual hours per week, the same salary is spread across fewer hours, increasing the effective hourly value from ${money(hourly)} to ${money(effectiveHourly)}.`;
+     }
+   }
+
+   const compareRate=Math.max(0,num('compareHourlyRate')),compareHours=Math.max(0,num('compareHourlyHours',40)),compareAnnual=compareRate*compareHours*weeks;
+   const cs=document.getElementById('compareSalaryAnnual'),ch=document.getElementById('compareHourlyAnnual'),cd=document.getElementById('compareAnnualDifference'),summary=document.getElementById('compareOfferSummary');
+   if(cs)cs.textContent=money(salary);
+   if(ch)ch.textContent=money(compareAnnual);
+   const delta=compareAnnual-salary;
+   if(cd)cd.textContent=(delta>=0?'+':'−')+money(Math.abs(delta));
+   if(summary){
+     if(Math.abs(delta)<0.01)summary.textContent='On these gross-pay assumptions, the salary and hourly job annualize to about the same amount.';
+     else if(delta>0)summary.textContent=`On these gross-pay assumptions, the hourly job annualizes to about ${money(delta)} more per year.`;
+     else summary.textContent=`On these gross-pay assumptions, the salary annualizes to about ${money(Math.abs(delta))} more per year.`;
+   }
  } else if(id==='timeCard'){
    const elapsed=elapsedHours(val('start'),val('end')),breakMin=Math.max(0,num('break')),net=Math.max(0,elapsed-breakMin/60),rate=num('rate');
    setResult(`${net.toFixed(2)} hours`,[['Elapsed shift',elapsed.toFixed(2)+' hrs'],['Unpaid break',breakMin+' min'],['Net hours',net.toFixed(2)+' hrs'],['Estimated gross pay',money(net*rate)]]);
@@ -91,9 +152,9 @@ function calculate(){
    setResult(money(doubleRate*hours),[['Base hourly rate',money(rate)+'/hr'],['Double-time rate',money(doubleRate)+'/hr'],['Double-time hours',hours.toFixed(2)]]);
  }
 }
-document.addEventListener('input',calculate);
+document.addEventListener('input',()=>{calculate();if(document.body.dataset.calculator==='timeCardWeekly')saveWeeklyTimeCard()});
 document.addEventListener('change',e=>{if(e.target.id==='mode'){const salary=document.getElementById('salaryFields'),hourly=document.getElementById('hourlyFields');if(salary&&hourly){salary.hidden=e.target.value!=='salary';hourly.hidden=e.target.value!=='hourly'}}calculate()});
-document.addEventListener('DOMContentLoaded',()=>{const m=document.getElementById('mode');if(m)m.dispatchEvent(new Event('change'));if(document.body.dataset.calculator==='overtime')initOvertimePage();if(document.body.dataset.calculator==='hourlySalary')initHourlySalaryPage();if(document.body.dataset.calculator==='timeCardWeekly')initWeeklyTimeCard();calculate()});
+document.addEventListener('DOMContentLoaded',()=>{const m=document.getElementById('mode');if(m)m.dispatchEvent(new Event('change'));if(document.body.dataset.calculator==='overtime')initOvertimePage();if(document.body.dataset.calculator==='hourlySalary')initHourlySalaryPage();if(document.body.dataset.calculator==='timeCardWeekly'){initWeeklyTimeCard();restoreWeeklyTimeCard()}calculate()});
 
 document.addEventListener('click',async e=>{
  if(e.target.matches('[data-print-result]')){window.print();return}
@@ -111,9 +172,10 @@ document.addEventListener('click',async e=>{
  if(e.target.matches('[data-focus-hourly-result]')){document.getElementById('hourlyResultPanel')?.scrollIntoView({behavior:'smooth',block:'start'});return}
  if(e.target.matches('[data-reset-hourly]')){resetHourlySalary();return}
  if(e.target.matches('[data-share-hourly]')){const url=buildHourlySalaryShareUrl();try{await navigator.clipboard.writeText(url);setHourlyShareStatus('Share link copied.')}catch{setHourlyShareStatus('Copy this URL from your address bar: '+url)}return}
- if(e.target.matches('[data-salary-preset]')){const s=document.getElementById('salary');if(s){s.value=e.target.dataset.salaryPreset;calculate();document.getElementById('calculator')?.scrollIntoView({behavior:'smooth',block:'start'})}return}
- if(e.target.matches('[data-timecard-reset]')){resetWeeklyTimeCard();return}
- if(e.target.matches('[data-timecard-preset]')){loadStandardTimeCard();return}
+ if(e.target.matches('[data-salary-preset]')){const s=document.getElementById('salary'),f=document.getElementById('salaryFrequency');if(s){s.value=e.target.dataset.salaryPreset;if(f)f.value='annual';calculate();document.getElementById('calculator')?.scrollIntoView({behavior:'smooth',block:'start'})}return}
+ if(e.target.matches('[data-timecard-reset]')){resetWeeklyTimeCard();saveWeeklyTimeCard();return}
+ if(e.target.matches('[data-timecard-clear-saved]')){clearSavedWeeklyTimeCard();return}
+ if(e.target.matches('[data-timecard-preset]')){loadStandardTimeCard();saveWeeklyTimeCard();return}
  if(e.target.matches('[data-export-timecard]')){exportWeeklyTimeCard();return}
  if(e.target.matches('[data-copy-result]')){
    const headline=document.getElementById('headline')?.textContent||'';
@@ -135,7 +197,8 @@ function initWeeklyTimeCard(){
      <th scope="row">${day}</th>
      <td><input aria-label="${day} clock in" class="tc-input" id="tcStart${i}" type="time" value="${on?'09:00':''}"></td>
      <td><input aria-label="${day} clock out" class="tc-input" id="tcEnd${i}" type="time" value="${on?'17:30':''}"></td>
-     <td><input aria-label="${day} unpaid break minutes" class="tc-break" id="tcBreak${i}" type="number" min="0" step="5" value="${on?'30':'0'}"></td>
+     <td><input aria-label="${day} unpaid break 1 minutes" class="tc-break" id="tcBreak${i}" type="number" min="0" step="5" value="${on?'30':'0'}"></td>
+     <td><input aria-label="${day} unpaid break 2 minutes" class="tc-break" id="tcBreak2_${i}" type="number" min="0" step="5" value="0"></td>
      <td><strong id="tcPaid${i}">${on?'8.00':'0.00'} h</strong></td>
    </tr>`;
  }).join('');
@@ -144,13 +207,13 @@ function initWeeklyTimeCard(){
 function getWeeklyTimeCard(){
  let total=0,workedDays=0,breakMinutes=0;
  const rows=TIMECARD_DAYS.map((day,i)=>{
-   const start=val('tcStart'+i),end=val('tcEnd'+i),br=Math.max(0,num('tcBreak'+i));
+   const start=val('tcStart'+i),end=val('tcEnd'+i),br1=Math.max(0,num('tcBreak'+i)),br2=Math.max(0,num('tcBreak2_'+i)),br=br1+br2;
    const elapsed=(start&&end)?elapsedHours(start,end):0;
    const net=(start&&end)?Math.max(0,elapsed-br/60):0;
    const paid=document.getElementById('tcPaid'+i); if(paid)paid.textContent=net.toFixed(2)+' h';
    if(start&&end){workedDays++;breakMinutes+=br}
    total+=net;
-   return {day,start,end,breakMinutes:br,elapsed,net};
+   return {day,start,end,break1:br1,break2:br2,breakMinutes:br,elapsed,net};
  });
  return {rows,total,workedDays,breakMinutes};
 }
@@ -174,12 +237,65 @@ function calculateWeeklyTimeCard(){
    ['Overtime pay',money(otPay)],
    ['Estimated gross pay',money(totalPay)]
  ]);
+ updateWeeklyTimeCardInsights(data,threshold,otH,totalPay);
+}
+
+
+function updateWeeklyTimeCardInsights(data,threshold,otH,totalPay){
+ const worked=data.rows.filter(r=>r.start&&r.end);
+ const average=worked.length?data.total/worked.length:0;
+ const sorted=[...worked].sort((a,b)=>b.net-a.net);
+ const longest=sorted[0]||null,shortest=sorted.length?sorted[sorted.length-1]:null;
+ const overtimeShare=data.total>0?otH/data.total*100:0;
+
+ const avgEl=document.getElementById('tcAverageDay'),longEl=document.getElementById('tcLongestDay'),
+ breakEl=document.getElementById('tcBreakTotal'),shareEl=document.getElementById('tcOvertimeShare'),
+ shortEl=document.getElementById('tcShortestDay'),grossEl=document.getElementById('tcInsightGross'),
+ summary=document.getElementById('timecardSummary'),alerts=document.getElementById('timecardAlerts');
+
+ if(avgEl)avgEl.textContent=worked.length?hoursMinutes(average):'—';
+ if(longEl)longEl.textContent=longest?`${longest.day}: ${hoursMinutes(longest.net)}`:'—';
+ if(breakEl)breakEl.textContent=hoursMinutes(data.breakMinutes/60);
+ if(shareEl)shareEl.textContent=data.total?overtimeShare.toFixed(1)+'%':'0%';
+ if(shortEl)shortEl.textContent=shortest?`${shortest.day}: ${hoursMinutes(shortest.net)}`:'—';
+ if(grossEl)grossEl.textContent=money(totalPay);
+
+ if(summary){
+   if(!worked.length){
+     summary.textContent='Enter at least one complete clock-in and clock-out row to see a weekly explanation.';
+   }else{
+     const overtimeText=otH>0?`${hoursMinutes(otH)} of the week is above your ${threshold.toFixed(2)}-hour overtime threshold.`:`No hours are above your ${threshold.toFixed(2)}-hour overtime threshold.`;
+     summary.textContent=`You worked ${hoursMinutes(data.total)} across ${worked.length} completed ${worked.length===1?'day':'days'}, averaging ${hoursMinutes(average)} per paid day. ${overtimeText}`;
+   }
+ }
+
+ if(alerts){
+   const messages=[];
+   data.rows.forEach(r=>{
+     if(!r.start&&!r.end)return;
+     if((r.start&&!r.end)||(!r.start&&r.end)){
+       messages.push(`${r.day}: add both a clock-in and clock-out time.`);
+       return;
+     }
+     if(r.start&&r.end){
+       if(r.elapsed>=14)messages.push(`${r.day}: this entry spans ${hoursMinutes(r.elapsed)}. Check the times if that seems unusually long.`);
+       if(r.breakMinutes/60>r.elapsed)messages.push(`${r.day}: unpaid breaks are longer than the elapsed shift.`);
+       if(r.end<r.start)messages.push(`${r.day}: clock-out is earlier than clock-in, so this is treated as an overnight shift.`);
+       if(r.net>12)messages.push(`${r.day}: paid time is ${hoursMinutes(r.net)}, which is unusually long for many schedules.`);
+     }
+   });
+   if(!messages.length && worked.length){
+     alerts.innerHTML='<div class="timecard-alert ok">No obvious input issues detected in the completed rows.</div>';
+   }else{
+     alerts.innerHTML=messages.map(m=>`<div class="timecard-alert">⚠ ${m}</div>`).join('');
+   }
+ }
 }
 
 function resetWeeklyTimeCard(){
  TIMECARD_DAYS.forEach((_,i)=>{
-   const s=document.getElementById('tcStart'+i),e=document.getElementById('tcEnd'+i),b=document.getElementById('tcBreak'+i);
-   if(s)s.value=''; if(e)e.value=''; if(b)b.value='0';
+   const s=document.getElementById('tcStart'+i),e=document.getElementById('tcEnd'+i),b=document.getElementById('tcBreak'+i),b2=document.getElementById('tcBreak2_'+i);
+   if(s)s.value=''; if(e)e.value=''; if(b)b.value='0'; if(b2)b2.value='0';
  });
  const r=document.getElementById('rate'); if(r)r.value='20';
  const t=document.getElementById('tcThreshold'); if(t)t.value='40';
@@ -189,23 +305,180 @@ function resetWeeklyTimeCard(){
 
 function loadStandardTimeCard(){
  TIMECARD_DAYS.forEach((_,i)=>{
-   const s=document.getElementById('tcStart'+i),e=document.getElementById('tcEnd'+i),b=document.getElementById('tcBreak'+i);
+   const s=document.getElementById('tcStart'+i),e=document.getElementById('tcEnd'+i),b=document.getElementById('tcBreak'+i),b2=document.getElementById('tcBreak2_'+i);
    const on=i<5;
-   if(s)s.value=on?'09:00':''; if(e)e.value=on?'17:30':''; if(b)b.value=on?'30':'0';
+   if(s)s.value=on?'09:00':''; if(e)e.value=on?'17:30':''; if(b)b.value=on?'30':'0'; if(b2)b2.value='0';
  });
  calculate();
 }
 
+
+function saveWeeklyTimeCard(){
+ try{
+   const values={rate:val('rate'),threshold:val('tcThreshold'),multiplier:val('tcMultiplier'),days:TIMECARD_DAYS.map((_,i)=>({
+     start:val('tcStart'+i),end:val('tcEnd'+i),break1:val('tcBreak'+i),break2:val('tcBreak2_'+i)
+   }))};
+   localStorage.setItem('workpay_timecard_v2',JSON.stringify(values));
+ }catch{}
+}
+
+function restoreWeeklyTimeCard(){
+ try{
+   const raw=localStorage.getItem('workpay_timecard_v2'); if(!raw)return;
+   const values=JSON.parse(raw);
+   const r=document.getElementById('rate'),t=document.getElementById('tcThreshold'),m=document.getElementById('tcMultiplier');
+   if(r&&values.rate!=null)r.value=values.rate;if(t&&values.threshold!=null)t.value=values.threshold;if(m&&values.multiplier!=null)m.value=values.multiplier;
+   (values.days||[]).forEach((d,i)=>{
+     const s=document.getElementById('tcStart'+i),e=document.getElementById('tcEnd'+i),b=document.getElementById('tcBreak'+i),b2=document.getElementById('tcBreak2_'+i);
+     if(s&&d.start!=null)s.value=d.start;if(e&&d.end!=null)e.value=d.end;if(b&&d.break1!=null)b.value=d.break1;if(b2&&d.break2!=null)b2.value=d.break2;
+   });
+ }catch{}
+}
+
+function clearSavedWeeklyTimeCard(){
+ try{localStorage.removeItem('workpay_timecard_v2')}catch{}
+ resetWeeklyTimeCard();
+}
+
 function exportWeeklyTimeCard(){
  const d=getWeeklyTimeCard(),rate=Math.max(0,num('rate'));
- const lines=[['Day','Clock in','Clock out','Unpaid break (min)','Paid hours']];
- d.rows.forEach(r=>lines.push([r.day,r.start,r.end,r.breakMinutes,r.net.toFixed(2)]));
+ const lines=[['Day','Clock in','Clock out','Break 1 (min)','Break 2 (min)','Total unpaid break (min)','Paid hours']];
+ d.rows.forEach(r=>lines.push([r.day,r.start,r.end,r.break1,r.break2,r.breakMinutes,r.net.toFixed(2)]));
  lines.push([]);
  lines.push(['Weekly total','','','',d.total.toFixed(2)]);
  lines.push(['Hourly rate','','','',rate.toFixed(2)]);
  const csv=lines.map(row=>row.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\n');
  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
  const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='workpay-time-card.csv';a.click();URL.revokeObjectURL(url);
+}
+
+
+function updateOvertimeExplanation(rate,hours,threshold,mult,mode,bonus,r){
+ const summary=document.getElementById('overtimeExplainSummary'),
+       hoursEl=document.getElementById('otExplainHours'),
+       rateEl=document.getElementById('otExplainRate'),
+       premiumEl=document.getElementById('otExplainPremium'),
+       totalEl=document.getElementById('otExplainTotal'),
+       reason=document.getElementById('overtimeReasonText'),
+       modeEl=document.getElementById('overtimeExplainMode');
+
+ const overtimeHours=Math.max(0,hours-threshold);
+ if(modeEl)modeEl.textContent=mode==='advanced'?'Advanced regular-rate estimate':'Basic hourly estimate';
+
+ if(hoursEl){
+   if(overtimeHours>0)hoursEl.textContent=`${hours.toFixed(2)} total hours − ${threshold.toFixed(2)} threshold hours = ${overtimeHours.toFixed(2)} overtime hours.`;
+   else hoursEl.textContent=`${hours.toFixed(2)} total hours does not exceed the ${threshold.toFixed(2)}-hour threshold, so overtime hours are 0.00.`;
+ }
+
+ if(rateEl){
+   if(mode==='advanced'){
+     rateEl.textContent=`Estimated regular rate ${money(r.regularRate)}/hr × ${mult.toFixed(2)} = ${money(r.overtimeRate)}/hr overtime rate.`;
+   }else{
+     rateEl.textContent=`Base rate ${money(rate)}/hr × ${mult.toFixed(2)} = ${money(r.overtimeRate)}/hr overtime rate.`;
+   }
+ }
+
+ if(premiumEl){
+   if(overtimeHours>0){
+     premiumEl.textContent=`Straight-time compensation is ${money(r.straightTime)} and the additional overtime premium is ${money(r.overtimePremium)}.`;
+   }else{
+     premiumEl.textContent=`There is no overtime premium because no hours exceed the threshold. Straight-time compensation is ${money(r.straightTime)}.`;
+   }
+ }
+
+ if(totalEl)totalEl.textContent=`${money(r.straightTime)} straight-time compensation + ${money(r.overtimePremium)} overtime premium = ${money(r.total)} estimated weekly gross pay.`;
+
+ if(reason){
+   if(mode==='advanced' && bonus>0){
+     const delta=r.regularRate-rate;
+     reason.textContent=`You included ${money(bonus)} of eligible additional compensation. In this estimate, that raises the regular rate from the base ${money(rate)}/hr to ${money(r.regularRate)}/hr${Math.abs(delta)>0.001?`, a ${money(Math.abs(delta))}/hr difference`:''}. The overtime rate is then based on that estimated regular rate.`;
+   }else if(mode==='advanced'){
+     reason.textContent=`Advanced mode uses an estimated regular-rate method. Because no additional compensation is entered, the estimated regular rate currently remains ${money(r.regularRate)}/hr.`;
+   }else{
+     reason.textContent=`Basic mode treats your entered hourly rate (${money(rate)}/hr) as the regular rate and multiplies it by ${mult.toFixed(2)} for overtime. Use Advanced mode if eligible additional compensation should be included in the regular-rate estimate.`;
+   }
+ }
+
+ if(summary){
+   if(overtimeHours<=0){
+     summary.textContent=`No overtime hours are generated because ${hours.toFixed(2)} hours does not exceed the ${threshold.toFixed(2)}-hour threshold.`;
+   }else if(mode==='advanced' && bonus>0){
+     summary.textContent=`You have ${overtimeHours.toFixed(2)} overtime hours. Because additional compensation is included, the estimated regular rate changes before the overtime premium is calculated.`;
+   }else{
+     summary.textContent=`You have ${overtimeHours.toFixed(2)} overtime hours. The calculator separates straight-time compensation from the additional overtime premium so you can see exactly how the weekly total is built.`;
+   }
+ }
+}
+
+function updateBasicAdvancedComparison(rate,hours,threshold,mult,bonus){
+ const basic=calculateOvertimeModel(rate,hours,threshold,mult,'basic',0),
+       advanced=calculateOvertimeModel(rate,hours,threshold,mult,'advanced',bonus),
+       basicEl=document.getElementById('basicModeTotal'),
+       advancedEl=document.getElementById('advancedModeTotal'),
+       diffEl=document.getElementById('modeTotalDifference'),
+       summary=document.getElementById('modeComparisonSummary');
+ if(basicEl)basicEl.textContent=money(basic.total);
+ if(advancedEl)advancedEl.textContent=money(advanced.total);
+ const diff=advanced.total-basic.total;
+ if(diffEl)diffEl.textContent=(diff>=0?'+':'−')+money(Math.abs(diff));
+ if(summary){
+   if(bonus<=0){
+     summary.textContent='With no additional compensation entered, the basic and advanced estimates may be the same or very similar for a single hourly rate.';
+   }else if(Math.abs(diff)<0.01){
+     summary.textContent='On these inputs, including the additional compensation does not materially change the weekly estimate.';
+   }else if(diff>0){
+     summary.textContent=`Including ${money(bonus)} of additional compensation increases the advanced weekly estimate by about ${money(diff)} compared with basic mode.`;
+   }else{
+     summary.textContent=`The advanced weekly estimate is about ${money(Math.abs(diff))} lower than the basic estimate on these inputs.`;
+   }
+ }
+}
+
+
+function updateHourlyJobComparison(){
+ const aRate=Math.max(0,num('jobARate')),aHours=Math.max(0,num('jobAHours')),aWeeks=Math.max(0,num('jobAWeeks')),
+       bRate=Math.max(0,num('jobBRate')),bHours=Math.max(0,num('jobBHours')),bWeeks=Math.max(0,num('jobBWeeks'));
+
+ const aAnnual=aRate*aHours*aWeeks,bAnnual=bRate*bHours*bWeeks,
+       aAnnualHours=aHours*aWeeks,bAnnualHours=bHours*bWeeks,
+       annualDiff=bAnnual-aAnnual,hoursDiff=bAnnualHours-aAnnualHours;
+
+ const aA=document.getElementById('jobAAnnual'),bA=document.getElementById('jobBAnnual'),
+       aH=document.getElementById('jobAHoursAnnual'),bH=document.getElementById('jobBHoursAnnual'),
+       dA=document.getElementById('jobAnnualDifference'),dH=document.getElementById('jobHoursDifference'),
+       summary=document.getElementById('jobCompareSummary');
+
+ if(aA)aA.textContent=money(aAnnual);
+ if(bA)bA.textContent=money(bAnnual);
+ if(aH)aH.textContent=aAnnualHours.toLocaleString('en-US',{maximumFractionDigits:2})+' h';
+ if(bH)bH.textContent=bAnnualHours.toLocaleString('en-US',{maximumFractionDigits:2})+' h';
+ if(dA)dA.textContent=(annualDiff>=0?'+':'−')+money(Math.abs(annualDiff));
+ if(dH)dH.textContent=(hoursDiff>=0?'+':'−')+Math.abs(hoursDiff).toLocaleString('en-US',{maximumFractionDigits:2})+' h';
+
+ if(summary){
+   if(aAnnual===0 && bAnnual===0){
+     summary.textContent='Enter both job offers to compare annual gross pay and paid hours.';
+   }else if(Math.abs(annualDiff)<0.01){
+     if(Math.abs(hoursDiff)<0.01){
+       summary.textContent='On these inputs, both jobs annualize to about the same gross pay and paid hours.';
+     }else{
+       const fewer=hoursDiff>0?'Job A':'Job B';
+       summary.textContent=`Both jobs annualize to about the same gross pay, but ${fewer} uses fewer paid hours per year on these inputs.`;
+     }
+   }else{
+     const winner=annualDiff>0?'Job B':'Job A';
+     const loser=annualDiff>0?'Job A':'Job B';
+     const diff=Math.abs(annualDiff);
+     const winnerHours=annualDiff>0?bAnnualHours:aAnnualHours;
+     const loserHours=annualDiff>0?aAnnualHours:bAnnualHours;
+     const hourText=winnerHours<loserHours
+       ? ` It also uses ${(loserHours-winnerHours).toLocaleString('en-US',{maximumFractionDigits:2})} fewer paid hours per year.`
+       : winnerHours>loserHours
+       ? ` It uses ${(winnerHours-loserHours).toLocaleString('en-US',{maximumFractionDigits:2})} more paid hours per year.`
+       : '';
+     summary.textContent=`${winner} annualizes to about ${money(diff)} more gross pay than ${loser}.${hourText}`;
+   }
+ }
 }
 
 function calculateOvertimeModel(rate,hours,threshold,mult,mode='basic',bonus=0){
