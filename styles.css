@@ -243,3 +243,9 @@ body[data-calculator="overtime"] .content-card{border-radius:16px;box-shadow:0 8
 .priority-link-card span{margin-top:5px;color:#5d6f82;font-size:.88rem}
 .crawl-priority-links{margin-top:24px}
 @media(max-width:700px){.priority-link-grid{grid-template-columns:1fr}}
+
+/* V7.7 contextual internal-link paths */
+.contextual-link-list{list-style:none;padding:0;margin:1rem 0 0;display:grid;gap:.7rem}.contextual-link-list li{display:grid;gap:.2rem;padding:.8rem .9rem;border:1px solid var(--border,#d9e0e7);border-radius:12px}.contextual-link-list a{font-weight:700;text-decoration:none}.contextual-link-list a:hover{text-decoration:underline}.contextual-link-list span{font-size:.94rem;color:var(--muted,#5f6b76)}
+
+/* V7.9 SERP answer + trust enhancements */
+.serp-opportunities{margin-top:18px}.quick-answer-list{display:grid;gap:12px;margin:0}.quick-answer-list dt{font-weight:800;margin:0}.quick-answer-list dd{margin:3px 0 0;color:var(--muted,#475569);line-height:1.55}.editorial-trust-line{font-size:.92rem;line-height:1.55;color:var(--muted,#475569);margin-top:12px}.editorial-trust-line a{font-weight:700}

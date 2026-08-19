@@ -1,0 +1,11 @@
+WorkPay Tools V7.7 — CTR + Internal Linking Architecture
+Date: 2026-08-19
+
+Implemented
+- Corrected Home and calculator hub from 13 calculators to 15 in visible copy and metadata.
+- Expanded Home and /calculators ItemList structured data to 15 items by adding Semimonthly Pay and Hours to Decimal.
+- Refined titles/meta descriptions around real calculator capabilities; no take-home/tax promises were added.
+- Synchronized key metadata with Open Graph, Twitter and WebPage/CollectionPage JSON-LD.
+- Added contextual next-step internal links across the 15 calculator pages with varied anchors.
+- Strengthened Time tracking, Overtime/premium pay, Salary conversion/income, and Pay frequency/compensation clusters.
+- No orphan calculator pages were present before the change.
