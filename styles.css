@@ -249,3 +249,6 @@ body[data-calculator="overtime"] .content-card{border-radius:16px;box-shadow:0 8
 
 /* V7.9 SERP answer + trust enhancements */
 .serp-opportunities{margin-top:18px}.quick-answer-list{display:grid;gap:12px;margin:0}.quick-answer-list dt{font-weight:800;margin:0}.quick-answer-list dd{margin:3px 0 0;color:var(--muted,#475569);line-height:1.55}.editorial-trust-line{font-size:.92rem;line-height:1.55;color:var(--muted,#475569);margin-top:12px}.editorial-trust-line a{font-weight:700}
+
+/* V7.11: optional overtime controls and keyword-expansion content */
+.hourly-ot-toggle{display:flex;align-items:center;justify-content:space-between;gap:12px}.hourly-ot-toggle input{width:auto;min-width:20px;height:20px}.seo-query-expansion .answer-grid{margin:14px 0}.seo-query-expansion h3{margin-top:18px}

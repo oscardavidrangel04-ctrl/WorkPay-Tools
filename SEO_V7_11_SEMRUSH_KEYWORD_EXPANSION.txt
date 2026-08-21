@@ -1,0 +1,33 @@
+WorkPay Tools V7.11 — Semrush Keyword Expansion
+Date: 2026-08-21
+
+SAFETY / CHANGE STRATEGY
+- Built on V7.10 and changed only the five pages analyzed in Semrush plus calculator.js, styles.css and sitemap.xml.
+- Existing URLs, canonicals, cleanUrls behavior, redirects, navigation and unrelated calculators were left intact.
+- No new indexable pages were created, reducing cannibalization risk.
+
+OVERTIME PAY
+- Added OT calculator wording, time-and-a-half/double-time explanation, salaried/exempt context and new FAQ coverage for Semrush queries.
+- Kept legal wording qualified and linked to existing official DOL sources.
+
+HOURLY TO SALARY
+- Added optional weekly overtime premium inputs (toggle, threshold, multiplier).
+- Added common hourly-to-annual examples for $15, $16, $17, $19, $20, $21, $26 and $28/hour.
+- Updated FAQ/schema to reflect optional overtime functionality.
+
+SALARY TO HOURLY
+- Expanded common salary conversion examples for long-tail salary amounts discovered in Semrush.
+- Kept them on one strong page rather than generating thin pages for each amount.
+
+TIME CARD
+- Added time-card definition, lunch-break guidance and 3.75-hour conversion explanation.
+- Fixed an existing contradiction: the current weekly time card DOES estimate weekly overtime with the entered threshold/multiplier.
+
+WORK HOURS
+- Added payroll-minute conversion, hours-worked explanation and clock-in/clock-out semantic support.
+- Did not target irrelevant time-duration queries such as “how long till 8pm.”
+
+TECHNICAL
+- Updated dateModified in structured data for modified pages.
+- Updated sitemap lastmod for modified calculator URLs.
+- Preserved clean URLs and Vercel configuration.
