@@ -1,0 +1,18 @@
+Work Pay Tools V7.10 — Semrush hreflang + redirect cleanup
+Date: 2026-08-21
+
+Changes applied:
+1. Removed hreflang tags sitewide. The site currently has only one language/version (English), so hreflang is unnecessary and was generating Semrush conflicts.
+2. Kept canonical URLs clean and extensionless.
+3. Removed redundant explicit .html -> clean URL redirects from vercel.json. Vercel cleanUrls:true remains enabled and is the single source of URL normalization.
+4. Verified project source has no internal href/src references to .html URLs.
+5. Sitemap remains extensionless and lastmod values were refreshed to 2026-08-21.
+
+Expected audit effect after redeploy + fresh crawl:
+- Hreflang conflict warnings should disappear.
+- Hreflang incorrect-link warnings should disappear.
+- Internal discovery of .html redirect URLs should remain at zero.
+- Old .html URLs may still return 308 if requested directly; that is expected legacy behavior with Vercel cleanUrls and is not an indexability problem.
+
+Recommended Semrush action:
+Start a fresh audit/crawl after deployment so historical .html URLs from previous crawls are not mistaken for current internal-link issues.
