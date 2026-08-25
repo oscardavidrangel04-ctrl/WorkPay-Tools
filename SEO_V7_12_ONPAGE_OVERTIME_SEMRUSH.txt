@@ -1,0 +1,17 @@
+WorkPay Tools V7.12 — On Page SEO Checker: Overtime Pay
+Date: 2026-08-24
+
+Scope: /calculators/overtime-pay only, plus its sitemap lastmod.
+
+Applied:
+- Meta description now includes the exact target phrase “overtime pay calculator”.
+- Synced the same improved description wherever the page reused it in social/schema metadata.
+- Shortened and simplified key explanatory paragraphs for readability.
+- Added Semrush semantic terms naturally: total pay, number of overtime hours, overtime calculator, overtime hours worked, Fair Labor Standards Act (FLSA), labor law, double time, and hourly wages.
+- Preserved canonical URL, calculator logic, FAQ schema structure, internal links and legal caveats.
+- Updated dateModified and sitemap lastmod for this URL to 2026-08-24.
+
+Not changed:
+- No new URLs or sitewide template changes.
+- No backlink changes.
+- No keyword stuffing.

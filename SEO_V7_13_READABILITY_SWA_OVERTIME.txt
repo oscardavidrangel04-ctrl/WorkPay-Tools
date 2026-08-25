@@ -1,0 +1,8 @@
+WorkPay Tools V7.13 - Overtime readability polish
+
+Applied to /calculators/overtime-pay:
+- Split Basic mode explanation into three shorter sentences.
+- Simplified Advanced mode explanation while retaining eligible-extra-pay and overtime-premium meaning.
+- Simplified multiple-pay-rate regular-rate explanation and made the division step explicit.
+- Updated content review/dateModified and overtime sitemap lastmod to 2026-08-25.
+- Preserved calculator logic, canonical URL, schema structure, navigation and all other calculators.
