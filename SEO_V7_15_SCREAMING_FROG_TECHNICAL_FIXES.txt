@@ -1,0 +1,19 @@
+WorkPay Tools V7.15 — Screaming Frog technical fixes
+Date: 2026-08-27
+
+Applied from the Screaming Frog audit:
+- Preserved /calculators/semimonthly-pay and /calculators/hours-to-decimal as real calculator pages. Both files, calculator logic and clean canonical URLs are included in this build.
+- Verified /calculators canonical points to https://work-pay-tools.vercel.app/calculators.
+- Verified internal HTML links use clean URLs rather than .html destinations.
+- Shortened the remaining >60-character HTML title in the current source: /calculators/monthly-income.
+- Preserved index/follow directives, hreflang-free single-language setup, and existing JSON-LD.
+- No aggregateRating/review markup was invented.
+
+Validation performed:
+- JSON-LD parses successfully.
+- Internal clean-URL link targets map to packaged HTML files or site root assets.
+- No internal href ending in .html remains.
+- ZIP integrity tested.
+
+Important deployment note:
+The Screaming Frog 404/canonical findings came from the deployed crawl. In the V7.14 source used for this build, the two calculator pages and the clean /calculators canonical were already present. Deploy this V7.15 build, then recrawl the live site to confirm Vercel is serving the latest files.
