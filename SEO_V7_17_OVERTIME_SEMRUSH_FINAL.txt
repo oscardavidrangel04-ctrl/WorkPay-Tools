@@ -1,0 +1,27 @@
+WorkPay Tools V7.17 — Overtime Semrush final
+Date: 2026-08-28
+
+Source: V7.16 Semrush Site Audit + Time Card final consolidation.
+
+Applied to /calculators/overtime-pay only:
+- Shortened SEO title to “Overtime Pay Calculator | Time and a Half”.
+- Updated meta description around overtime pay, overtime wages, time-and-a-half rates and weekly gross pay before taxes.
+- Simplified H1 to “Overtime Pay Calculator”.
+- Added natural exact-match body usage for “overtime calculator” and “time and a half calculator”.
+- Renamed/clarified sections for “How to Use This Overtime Calculator” and “How to Calculate Overtime Pay”.
+- Added a concise Time and a Half Calculator section with the 1.5× formula and steps.
+- Renamed the multiple-rate section to “Weighted Overtime Calculator” and simplified the explanation.
+- Rewrote dense/passive passages identified by Semrush SEO Writing Assistant to improve readability while preserving legal accuracy and useful content.
+- Preserved formulas, ordered lists, advanced mode, multiple-rate worksheet, federal DOL/IRS context, FAQs, internal links and calculator functionality.
+- Updated visible review dates and WebPage dateModified to 2026-08-28.
+- No backlinks, fake ratings/reviews, decorative images or unnecessary keyword stuffing added.
+
+Target keyword cluster retained:
+- overtime pay calculator
+- overtime calculator
+- time and a half calculator
+- how to calculate overtime pay
+- overtime premium
+- weighted overtime calculator
+
+Validation performed after build.
