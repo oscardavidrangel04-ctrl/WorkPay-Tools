@@ -1,0 +1,18 @@
+WorkPay Tools V7.19 — Growth & Indexation Upgrade
+Date: 2026-09-01
+
+Applied:
+1. Expanded the home priority-link module from 4 to 6 SEO-priority pages.
+2. Expanded the /calculators hub priority module from 4 to 6 pages.
+3. Added/standardized contextual cross-links among the six Semrush-priority URLs.
+4. Added transparent methodology and review date to the $100,000 salary page.
+5. Added concise methodology and review date to the biweekly pay page.
+6. Kept sitemap canonical-only and refreshed lastmod for pages changed in this release.
+7. Preserved the existing 15-tool inventory because home, hub, and schema are already synchronized at 15.
+8. Preserved current programmatic salary/hourly pages; no new programmatic URLs were created.
+9. Preserved robots, canonicals, clean URLs, calculator inputs and JavaScript functionality.
+10. No backlinks, fake ratings/reviews, tax claims or unsupported legal claims were added.
+
+Operational SEO items (not code changes):
+- After deployment, inspect/request indexing for priority URLs that still show N/D in GSC.
+- Measure discovered -> crawled -> indexed -> impressions before making another large content change.
