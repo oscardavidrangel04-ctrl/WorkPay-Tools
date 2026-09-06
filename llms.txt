@@ -1,0 +1,20 @@
+# WorkPay Tools
+
+> Free web calculators for pay, salary conversions, overtime, time cards and work hours. Results are educational planning estimates, not legal, tax, payroll or financial advice.
+
+## Main sections
+- https://work-pay-tools.vercel.app/
+- https://work-pay-tools.vercel.app/calculators
+- https://work-pay-tools.vercel.app/about
+
+## Core calculators
+- https://work-pay-tools.vercel.app/calculators/time-card
+- https://work-pay-tools.vercel.app/calculators/overtime-pay
+- https://work-pay-tools.vercel.app/calculators/hourly-to-salary
+- https://work-pay-tools.vercel.app/calculators/salary-to-hourly
+- https://work-pay-tools.vercel.app/calculators/work-hours
+
+## Policies
+- https://work-pay-tools.vercel.app/privacy
+- https://work-pay-tools.vercel.app/terms
+- https://work-pay-tools.vercel.app/contact

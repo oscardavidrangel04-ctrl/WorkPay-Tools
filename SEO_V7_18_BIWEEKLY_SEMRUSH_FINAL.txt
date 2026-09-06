@@ -1,0 +1,21 @@
+WorkPay Tools V7.18 — Biweekly Pay Semrush Final
+Date: 2026-08-29
+
+Scope: /calculators/biweekly-pay only.
+
+Applied from Keyword Magic, Keyword Gap, On Page SEO Checker, SERP Analysis and SEO Writing Assistant:
+- Shortened title to "Biweekly Pay Calculator | Salary & Paycheck".
+- Rewrote meta description for biweekly gross-pay intent.
+- Reduced exact-match repetition in body copy.
+- Expanded useful explanatory content toward the SERP/SWA content-depth target without filler.
+- Improved readability with shorter sentences, direct definitions and active voice.
+- Added clear biweekly formulas for salary and hourly modes.
+- Added explanation of 26 pay periods and occasional 27-pay-period payroll calendars.
+- Added annual-salary-to-biweekly examples for $50k, $60k, $70k, $75k, $80k and $100k.
+- Added biweekly vs. semimonthly explanation.
+- Clarified gross pay vs. take-home pay and excluded taxes/deductions/overtime from this tool.
+- Expanded FAQ around biweekly pay meaning, pay periods, salary conversion and gross pay.
+- Updated FAQ structured data to match visible FAQ content.
+- Updated dateModified/reviewed date to 2026-08-29.
+- Preserved calculator IDs, calculator.js behavior, clean internal URLs, canonical and existing site structure.
+- No fake ratings/reviews and no backlink changes.

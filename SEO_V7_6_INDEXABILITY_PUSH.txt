@@ -1,0 +1,29 @@
+WorkPay Tools V7.6 — Indexability Push
+Updated: 2026-08-18
+
+Goal:
+Reduce technical/discovery friction for the four priority URLs without changing their URLs or creating new pages.
+
+Priority URLs:
+- /calculators/overtime-pay
+- /calculators/hourly-to-salary
+- /calculators/salary-to-hourly
+- /calculators/time-card
+
+Changes:
+- Added a prominent static HTML link block on the home page pointing to all four priority tools.
+- Added a prominent static HTML link block on /calculators pointing to all four priority tools.
+- Added static cross-links among the four priority calculators.
+- Confirmed/forced index,follow meta robots on the four pages.
+- Confirmed self-canonical clean URLs on the four pages.
+- Updated visible review date to August 18, 2026 where applicable.
+- Updated WebPage dateModified to 2026-08-18.
+- Updated sitemap lastmod for the four priority URLs to 2026-08-18.
+- Preserved the same 33 sitemap URLs.
+- Rewrote robots.txt to a minimal clean version with Allow: / and the canonical sitemap reference.
+- No URL changes.
+- No new pages.
+- No mass content expansion.
+
+Important:
+These changes improve crawl/indexing signals but do not guarantee Google indexation.

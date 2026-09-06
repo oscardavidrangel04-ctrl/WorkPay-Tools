@@ -1,0 +1,22 @@
+WorkPay Tools V7.2 — Phase 1 of 4
+URL improved: /calculators/time-card
+Updated: 2026-08-18
+
+Implemented:
+- “Explain my week” dynamic summary.
+- Average paid day.
+- Longest paid day.
+- Shortest paid day.
+- Total unpaid break time.
+- Overtime share of weekly hours.
+- Estimated gross pay insight.
+- Automatic input alerts for incomplete rows, very long shifts, breaks exceeding shift length and overnight shifts.
+- Clear “no obvious issues detected” state.
+- Added explanatory content about weekly insights and validation.
+- Updated title/meta/schema for the improved Time Card page only.
+
+Not changed in this phase:
+- Overtime Pay
+- Hourly to Salary
+- Salary to Hourly
+- Sitemap URL count remains unchanged.

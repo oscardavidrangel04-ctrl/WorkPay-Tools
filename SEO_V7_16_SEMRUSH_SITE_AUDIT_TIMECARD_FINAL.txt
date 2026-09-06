@@ -1,0 +1,26 @@
+WorkPay Tools V7.16 — Semrush Site Audit + Time Card final consolidation
+Date: 2026-08-27
+
+Source: V7.15 Screaming Frog technical fixes.
+
+Applied in one consolidated build:
+- URL #4 /calculators/time-card: shorter title, exact-keyword meta description, natural "timesheet calculator" usage, clearer active-voice copy, 30-minute unpaid-break example, net-hours × hourly-rate gross-pay formula, and simpler legal/context wording. Existing useful functionality and advanced weekly insights were preserved.
+- Removed WebApplication/SoftwareApplication JSON-LD entities across calculator pages instead of inventing aggregateRating/review data. Retained Organization, WebSite, WebPage, BreadcrumbList and FAQ markup where present.
+- Preserved real /calculators/semimonthly-pay and /calculators/hours-to-decimal pages. They are included in the package and sitemap; deploy this build before judging the previous live 404 audit.
+- Added visible internal links to the 12 programmatic conversion pages from the relevant conversion calculator/hub so they are not sitemap-only orphans.
+- Expanded /contact, /privacy and /terms with useful trust/policy content and updated review dates.
+- Added llms.txt as a lightweight site guide.
+- Kept the clean /calculators canonical and clean-URL internal-link strategy from V7.15.
+- Kept the non-www domain only and no hreflang for the single-language site.
+- Updated sitemap lastmod for changed pages.
+
+Validation:
+- JSON-LD parses successfully.
+- No WebApplication/SoftwareApplication entity remains.
+- No www.work-pay-tools.vercel.app reference remains.
+- No hreflang remains.
+- No internal href ending in .html remains.
+- Every clean internal site link resolves to a packaged page/asset under Vercel cleanUrls assumptions.
+- Every sitemap URL maps to a packaged HTML file or site root.
+- calculator.js syntax checked.
+- ZIP integrity checked.

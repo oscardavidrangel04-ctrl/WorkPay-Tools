@@ -1,0 +1,49 @@
+WorkPay Tools V7.0 — Time + Salary Expansion
+Updated: 2026-08-17
+
+IMPLEMENTED
+
+1) TIME CARD FLAGSHIP
+- Upgraded /calculators/time-card from one shift to a 7-day weekly time card.
+- Daily clock-in, clock-out and unpaid break inputs.
+- Weekly total in hours/minutes and decimal hours.
+- Regular vs overtime hours using an adjustable threshold.
+- Estimated regular, overtime and total gross pay.
+- Copy, print, reset, standard-week preset and CSV export.
+- Stronger SEO copy around clock-in/out, lunch breaks, decimal hours and weekly timesheets.
+
+2) SALARY TO HOURLY FLAGSHIP
+- Added common annual-salary presets.
+- Expanded result to annual work hours, weekly, biweekly, semimonthly, monthly, daily and hourly equivalents.
+- Added a live “How this is calculated” formula.
+- Added direct internal links to common salary-intent pages.
+
+3) NEW SALARY-TO-HOURLY LONG-TAIL CLUSTER
+- /40000-salary-to-hourly
+- /50000-salary-to-hourly
+- /60000-salary-to-hourly
+- /70000-salary-to-hourly
+- /80000-salary-to-hourly
+- /100000-salary-to-hourly
+Each page has unique title/H1/meta, direct answer, pay-period breakdown, FAQ, schema, canonical and internal links.
+
+4) NEW CALCULATORS
+- /calculators/semimonthly-pay
+  Focus: 24 pay periods, semimonthly vs biweekly.
+- /calculators/hours-to-decimal
+  Focus: hours/minutes -> decimal hours for time cards/payroll.
+
+5) ARCHITECTURE / INTERNAL LINKING
+- Calculator library now contains 15 calculators.
+- Added the two new calculators to the catalog, intent navigation and comparison matrix.
+- Added contextual cross-links from Time Card, Work Hours and Biweekly Pay.
+- Added new tools to the home discovery section.
+
+6) TECHNICAL SEO
+- Sitemap increased from 25 to 33 unique URLs.
+- Added clean-URL redirects for all 8 new URLs.
+- Canonicals and metadata included.
+- JSON-LD validated.
+- calculator.js passes Node syntax validation.
+
+No search volume, KD, CPC or trend metrics were invented.

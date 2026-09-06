@@ -1,0 +1,23 @@
+WorkPay Tools V7.5 — Phase 4 of 4
+URL improved: /calculators/hourly-to-salary
+Updated: 2026-08-18
+
+Implemented:
+- Added Compare two hourly jobs.
+- Each job has its own hourly rate, weekly hours and paid weeks.
+- Shows annual gross pay for both offers.
+- Shows annual paid hours for both offers.
+- Shows gross-pay difference and paid-hours difference.
+- Adds dynamic verdict explaining which offer annualizes higher and whether it requires more or fewer paid hours.
+- Added content explaining why paid weeks matter.
+- Preserved annual-hours assumptions and 35 / 37.5 / 40 hours weekly comparison.
+- Preserved all existing pay-period conversions and $15–$40/hour long-tail cluster.
+- Updated title/meta/schema for this URL only.
+
+The four-phase improvement plan is now complete:
+Phase 1 — Time Card
+Phase 2 — Salary to Hourly
+Phase 3 — Overtime Pay
+Phase 4 — Hourly to Salary
+
+Sitemap URL count unchanged.

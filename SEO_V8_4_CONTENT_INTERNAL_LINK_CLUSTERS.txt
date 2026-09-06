@@ -1,0 +1,18 @@
+WorkPay Tools V8.4 — Content + Internal Link Clusters
+
+Scope
+- Expanded salary-growth, contractor-salary, compensation-package and hours-to-decimal with useful formula/context/examples/use cases.
+- Reinforced internal linking using a pillar-and-satellite pattern similar to the site's successful Aguinaldo-style cluster model.
+- Salary pillar remains hourly-to-salary; Time pillar remains time-card; supporting calculators now receive more contextual links from closely related pages.
+- Updated meta descriptions for work-hours, weekly-pay, annual-income, salary-growth and terms.
+- Improved Terms title.
+- Canonicals, clean URLs, robots directives, calculator logic and existing working routes were not intentionally changed.
+
+Internal-link reinforcement
+Salary cluster: salary-growth, contractor-salary, compensation-package receive links from hourly-to-salary, salary-to-hourly, annual-income, pay-raise and each other where relevant.
+Time/premium cluster: hours-to-decimal, double-time and shift-differential receive contextual links from time-card, work-hours, overtime-pay and weekly-pay. PTO value receives additional salary/compensation context links.
+
+Validation
+- No explicit internal hrefs to .html legacy URLs.
+- JSON-LD parse validation completed.
+- Target meta descriptions kept in a practical snippet range.

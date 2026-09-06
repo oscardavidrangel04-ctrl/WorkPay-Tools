@@ -1,0 +1,39 @@
+WorkPay Tools V7.1 — Top 4 SEO + UX Upgrade
+Updated: 2026-08-18
+
+Priority URLs improved:
+- /calculators/overtime-pay
+- /calculators/hourly-to-salary
+- /calculators/salary-to-hourly
+- /calculators/time-card
+
+OVERTIME PAY
+- Added prominent live cards for overtime rate, overtime hours and overtime premium.
+- Added verified U.S. Department of Labor source links for Fact Sheet #23, regular-rate guidance and the DOL Overtime Calculator Advisor.
+- Added visible trust/review signals while preserving advanced regular-rate functionality.
+
+HOURLY TO SALARY
+- Added a live schedule comparison for 35, 37.5 and 40 hours/week using the user's hourly rate and paid weeks.
+- Preserved the existing annual-hours, pay-period and custom-schedule functionality.
+- Added visible trust/review signals.
+
+SALARY TO HOURLY
+- Added salary-frequency input: annual, monthly or weekly.
+- The tool annualizes the selected salary amount before converting to hourly pay.
+- Added live comparison at 35, 37.5 and 40 hours/week.
+- Salary presets automatically return the input mode to annual to prevent ambiguous preset calculations.
+- Preserved the $40k–$100k SEO cluster.
+
+TIME CARD
+- Added a second unpaid break field for every day of the weekly time card.
+- Added browser-local autosave and restore.
+- Added “Clear saved card”.
+- CSV export now includes Break 1, Break 2 and total unpaid break.
+- Preserved weekly hours, decimal hours, regular/overtime split, gross-pay estimate, print and CSV.
+
+TRUST / TECHNICAL
+- Trust strips added to all four priority pages: formula shown, no account required, browser processing, review date.
+- Canonicals preserved.
+- Existing 33-URL sitemap preserved.
+- JSON-LD parses successfully.
+- calculator.js passes Node syntax validation.
