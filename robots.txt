@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://work-pay-tools.vercel.app/sitemap.xml
