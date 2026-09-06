@@ -50,7 +50,7 @@
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/calculators/pay-raise</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/calculators/pto-value</loc>
@@ -132,4 +132,7 @@
     <loc>https://work-pay-tools.vercel.app/100000-salary-to-hourly</loc>
     <lastmod>2026-09-01</lastmod>
   </url>
+  <url><loc>https://work-pay-tools.vercel.app/calculators/salary-growth</loc><lastmod>2026-09-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://work-pay-tools.vercel.app/calculators/contractor-salary</loc><lastmod>2026-09-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://work-pay-tools.vercel.app/calculators/compensation-package</loc><lastmod>2026-09-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

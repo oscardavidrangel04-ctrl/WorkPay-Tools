@@ -61,7 +61,7 @@
       "@type": "WebPage",
       "@id": "https://work-pay-tools.vercel.app/#webpage",
       "url": "https://work-pay-tools.vercel.app/",
-      "name": "15 Free Pay & Work Hours Calculators | WorkPay Tools",
+      "name": "18 Free Pay & Work Hours Calculators | WorkPay Tools",
       "description": "Use 15 free U.S. calculators for overtime, salary conversions, time cards, weekly pay, PTO, raises and work hours. No sign-up and clear formulas.",
       "isPartOf": {
         "@id": "https://work-pay-tools.vercel.app/#website"
@@ -373,7 +373,7 @@
 </div>
 </section>
 <section class="home-final-cta">
-<span class="home-kicker">Ready to calculate?</span><h2>Pick the tool that matches your question.</h2><p>All 15 calculators are free, focused and available without creating an account.</p><div class="home-hero-actions centered"><a class="home-btn primary" href="/calculators">Browse all calculators →</a><a class="home-btn secondary" href="/about">How WorkPay Tools is built</a></div>
+<span class="home-kicker">Ready to calculate?</span><h2>Pick the tool that matches your question.</h2><p>All 18 calculators are free, focused and available without creating an account.</p><div class="home-hero-actions centered"><a class="home-btn primary" href="/calculators">Browse all calculators →</a><a class="home-btn secondary" href="/about">How WorkPay Tools is built</a></div>
 </section>
 <section class="content-card" style="margin-top:24px">
 <span class="eyebrow">New focused tools</span>
@@ -385,7 +385,7 @@
 <a href="/calculators/salary-to-hourly">Salary to Hourly Calculator</a>
 <a href="/calculators/time-card">Weekly Time Card Calculator</a>
 </div>
-</section></main>
+</section><section class="content-card"><span class="eyebrow">New compensation tools</span><h2>Model raises, contractor rates and total compensation</h2><p>Use these focused tools when salary alone does not answer the full pay question.</p><div class="tool-nav"><a href="/calculators/pay-raise">Salary Increase Calculator</a><a href="/calculators/salary-growth">Salary Growth Calculator</a><a href="/calculators/contractor-salary">Contractor Salary Calculator</a><a href="/calculators/compensation-package">Compensation Package Calculator</a></div></section></main>
 <footer class="home-footer">
 <div class="footer-main"><div class="footer-brand"><a class="brand" href="/"><span class="logo">$</span>WorkPay <b>Tools</b></a><p>Free calculators for clearer pay, overtime and work-hour decisions.</p><span>Educational estimates only.</span></div>
 <div><h2>Popular calculators</h2><a href="/calculators/overtime-pay">Overtime Pay</a><a href="/calculators/time-card">Time Card</a><a href="/calculators/weekly-pay">Weekly Pay</a><a href="/calculators/hourly-to-salary">Hourly to Salary</a></div>
@@ -432,7 +432,7 @@
       activeIndex=-1;
       if (!q) { results.innerHTML=''; results.classList.remove('open'); search.setAttribute('aria-expanded','false'); return; }
       const matched = tools.map(t=>[t,score(t,q)]).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]).slice(0,6).map(x=>x[0]);
-      results.innerHTML = matched.length ? matched.map((t,i)=>`<a role="option" id="tool-option-${i}" data-search-result="${t.name}" href="${t.url}"><strong>${t.name}</strong><span>${t.desc}</span><b>→</b></a>`).join('') : '<p>No exact match. <a href="/calculators">Browse all 15 calculators →</a></p>';
+      results.innerHTML = matched.length ? matched.map((t,i)=>`<a role="option" id="tool-option-${i}" data-search-result="${t.name}" href="${t.url}"><strong>${t.name}</strong><span>${t.desc}</span><b>→</b></a>`).join('') : '<p>No exact match. <a href="/calculators">Browse all 18 calculators →</a></p>';
       results.classList.add('open'); search.setAttribute('aria-expanded','true');
     };
     search.setAttribute('role','combobox'); search.setAttribute('aria-autocomplete','list'); search.setAttribute('aria-controls','home-search-results'); search.setAttribute('aria-expanded','false'); results.setAttribute('role','listbox');

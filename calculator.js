@@ -147,6 +147,19 @@ function calculate(){
  } else if(id==='raise'){
    const salary=num('salary'),pct=num('percent'),inc=salary*pct/100,newSalary=salary+inc;
    setResult(`${money(newSalary)} / year`,[['Current salary',money(salary)],['Annual increase',money(inc)],['Monthly increase',money(inc/12)],['Biweekly increase',money(inc/26)]]);
+ } else if(id==='salaryGrowth'){
+   const salary=Math.max(0,num('salary')),pct=num('percent'),years=Math.max(1,Math.min(40,num('years',1)));
+   const future=salary*Math.pow(1+pct/100,years),gain=future-salary;
+   let cumulative=0; for(let y=1;y<=Math.floor(years);y++) cumulative+=salary*Math.pow(1+pct/100,y);
+   setResult(`${money(future)} / year`,[['Starting salary',money(salary)],['Years',years.toFixed(0)],['Total growth',money(gain)],['Growth percentage',salary>0?((future/salary-1)*100).toFixed(2)+'%':'0.00%'],['Cumulative salary',money(cumulative)]]);
+ } else if(id==='contractorSalary'){
+   const salary=Math.max(0,num('salary')),hours=Math.max(1,num('hours')),weeks=Math.max(1,num('weeks'));
+   const annualHours=hours*weeks,rate=salary/annualHours;
+   setResult(`${money(rate)} / billable hour`,[['Annual income target',money(salary)],['Billable hours per year',annualHours.toFixed(0)],['Weekly billable hours',hours.toFixed(0)],['Billable weeks',weeks.toFixed(0)],['Monthly income target',money(salary/12)]]);
+ } else if(id==='compensationPackage'){
+   const salary=Math.max(0,num('salary')),bonus=Math.max(0,num('bonus')),retirement=Math.max(0,num('retirement')),benefits=Math.max(0,num('benefits')),equity=Math.max(0,num('equity'));
+   const total=salary+bonus+retirement+benefits+equity;
+   setResult(`${money(total)} / year`,[['Base salary',money(salary)],['Additional compensation',money(total-salary)],['Bonus',money(bonus)],['Retirement contribution',money(retirement)],['Benefits value',money(benefits)],['Equity value',money(equity)]]);
  } else if(id==='pto'){
    const hours=num('hours'),rate=num('rate'),value=hours*rate;
    setResult(money(value),[['PTO hours',hours.toFixed(1)],['Hourly rate',money(rate)+'/hr'],['Equivalent 8-hour days',(hours/8).toFixed(2)]]);
