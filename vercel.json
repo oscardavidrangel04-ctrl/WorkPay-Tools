@@ -63,5 +63,27 @@
         }
       ]
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/calculators/semimonthly-pay",
+      "destination": "/calculators/semimonthly-pay.html"
+    },
+    {
+      "source": "/calculators/hours-to-decimal",
+      "destination": "/calculators/hours-to-decimal.html"
+    },
+    {
+      "source": "/calculators/salary-growth",
+      "destination": "/calculators/salary-growth.html"
+    },
+    {
+      "source": "/calculators/contractor-salary",
+      "destination": "/calculators/contractor-salary.html"
+    },
+    {
+      "source": "/calculators/compensation-package",
+      "destination": "/calculators/compensation-package.html"
+    }
   ]
 }
