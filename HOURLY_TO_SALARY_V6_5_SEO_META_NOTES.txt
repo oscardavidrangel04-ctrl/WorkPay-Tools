@@ -1,0 +1,12 @@
+WorkPay Tools V6.5 — Hourly to Salary SEO + Meta Polish
+
+- Retuned title and meta description around primary intent: hourly wage to annual salary.
+- Synced Open Graph/Twitter title and description.
+- Improved hero snippet copy and quick-answer block.
+- Added 12-row static hourly-to-annual conversion table.
+- Added hours-per-week salary comparison table.
+- Added semantic topic blocks for hourly/yearly salary, pay periods, job comparison and limitations.
+- Added pay-period guide.
+- Expanded FAQ from 10 to 15 visible questions and synchronized FAQPage JSON-LD.
+- Enriched WebPage/WebApplication structured data and added an ItemList for common conversions.
+- Preserved canonical, hreflang, robots directives, calculator logic and internal links.

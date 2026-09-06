@@ -1,0 +1,11 @@
+WorkPay Tools V6.2 — /calculators SEO Pillar
+
+- Expanded hub intro and intent coverage
+- Static SEO category sections with anchors
+- Descriptive internal links and card CTAs
+- Which calculator should I use? comparison table
+- Static common calculation examples
+- Editorial methodology section
+- CollectionPage + enriched ItemList schema
+- Hub backlinks added to 13 calculator pages
+- Responsive styles preserved; JS features remain progressive enhancement

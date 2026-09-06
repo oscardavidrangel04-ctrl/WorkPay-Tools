@@ -1,0 +1,27 @@
+WorkPay Tools V8.3 — 308 Internal Link Fix
+
+Root cause found:
+- The current V8.2 source uses clean internal links without .html.
+- The GitHub repository still had an older root file: calculators.html.
+- Because Vercel uses cleanUrls, /calculators could resolve to that stale root file.
+- Screaming Frog therefore found old links such as /calculators/time-card.html from /calculators.
+
+Fix in V8.3:
+1. Added a fresh root calculators.html matching calculators/index.html.
+   This overwrites the stale calculators.html when copied into the repo.
+2. All internal href links in the current HTML remain clean (no .html targets).
+3. Updated the calculator hub ItemList schema from 15 to 18 items and added:
+   - Salary Growth Calculator
+   - Contractor Salary Calculator
+   - Compensation Package Calculator
+
+Deployment:
+- Copy ALL V8.3 contents into the local GitHub Desktop repository.
+- Choose Replace files in destination.
+- Commit and Push to main.
+- Wait for Vercel Production deployment.
+- Start a completely NEW Screaming Frog crawl.
+
+Expected result:
+- /calculators should no longer generate internal links to the 18 legacy .html URLs.
+- The old .html URLs may still return 308 when visited directly; that is correct and useful.

@@ -1,0 +1,29 @@
+WorkPay Tools V6.4 — Hourly to Salary Flagship
+Base: V6.3 Calculators Max Pillar
+Date: 2026-08-17
+
+Focused URL:
+https://work-pay-tools.vercel.app/calculators/hourly-to-salary
+
+Major upgrades:
+- Flagship two-column calculator/result experience
+- Weekly, biweekly, semimonthly, monthly and annual gross-pay equivalents
+- Weekly-hours and paid-weeks presets
+- Dynamic annual paid-hours indicator
+- Dynamic +$1 / +$2 / +$5 hourly-rate comparison
+- Clickable $15–$40 hourly conversion examples
+- Shareable query-string scenarios
+- Local browser state persistence and reset
+- Input guidance for overtime/schedule assumptions
+- Expanded long-tail static content and decision guide
+- 10 visible FAQs synchronized with FAQPage JSON-LD
+- Improved title, meta description, Open Graph and WebApplication schema
+- Stronger contextual internal linking
+- Responsive/mobile polish
+
+Validation:
+- 1 H1
+- 0 duplicate IDs
+- 10 visible FAQs = 10 FAQ schema entries
+- 0 broken internal links on focused page
+- calculator.js passes node --check

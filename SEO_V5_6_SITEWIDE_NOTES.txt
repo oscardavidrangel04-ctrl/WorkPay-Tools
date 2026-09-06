@@ -1,0 +1,14 @@
+WorkPay Tools V5.6 — Site-wide SEO upgrade
+
+Scope: entire site, not only Overtime Pay.
+- Rewrote titles and meta descriptions across all 13 calculators.
+- Added author/application metadata and complete Open Graph + Twitter metadata.
+- Added/normalized Organization, WebSite, WebPage, WebApplication, BreadcrumbList, ItemList and FAQPage structured data.
+- FAQ schema is generated only from visible FAQ content.
+- Updated visible review dates and schema dateModified to 2026-08-17.
+- Added unique use-case copy to each calculator page.
+- Strengthened homepage internal linking with goal-based calculator clusters.
+- Strengthened calculator-library intro and crawlable category links.
+- Updated sitemap lastmod for all public URLs.
+- Set 404 page to noindex,follow.
+- Preserved V5.5 Overtime functionality and content.

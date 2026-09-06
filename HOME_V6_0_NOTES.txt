@@ -1,0 +1,20 @@
+WorkPay Tools V6.0 — Home Experience Polish
+
+Implemented on home only, preserving the other 18 public URLs:
+1. Recently used calculators (localStorage)
+2. Popular tools maintained as curated starting points
+3. Search autocomplete with keyboard support
+4. Search synonyms / intent matching
+5. “I want to…” intent finder
+6. Time Card vs Work Hours vs Weekly Pay comparison
+7. Hourly vs salaried starting point selector
+8. Example outcomes inside popular calculator cards
+9. More specific job-to-be-done card copy
+10. Explore by topic / calculator paths
+11. Existing 13-item ItemList retained
+12. Explicit Why WorkPay Tools trust section
+13. Mobile-first first viewport refinements
+14. No-JS fallback and normal HTML links retained
+15. Analytics-ready interaction events via dataLayer + workpay:interaction CustomEvent
+
+No external framework added. Core functionality remains static/browser-based.

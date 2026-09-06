@@ -1,0 +1,32 @@
+WorkPay Tools V6.8 — Keyword Expansion
+Updated 2026-08-17
+
+Implemented the SEO expansion strategy on top of V6.7.
+
+NEW SEARCH-INTENT PAGES
+- /15-an-hour-is-how-much-a-year
+- /20-an-hour-is-how-much-a-year
+- /25-an-hour-is-how-much-a-year
+- /30-an-hour-is-how-much-a-year
+- /35-an-hour-is-how-much-a-year
+- /40-an-hour-is-how-much-a-year
+
+Each page includes:
+- exact-intent title/H1/meta
+- annual, monthly, biweekly, weekly and daily gross-pay equivalents
+- time-and-a-half example
+- custom explanatory content
+- FAQ section + FAQPage schema
+- BreadcrumbList schema
+- canonical/hreflang
+- internal links back to Hourly to Salary, Weekly Pay and Overtime Pay
+- links among nearby hourly-wage examples
+
+SITEWIDE CHANGES
+- Added an hourly-wage search cluster to /calculators/hourly-to-salary
+- Added the cluster to /calculators
+- Added all six URLs to sitemap.xml
+- Added .html -> clean URL redirects in vercel.json
+
+Purpose:
+Capture specific long-tail searches such as "$20 an hour is how much a year" while strengthening the Hourly to Salary topical cluster without creating thin one-line pages.
