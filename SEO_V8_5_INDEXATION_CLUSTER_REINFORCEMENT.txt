@@ -1,0 +1,19 @@
+WorkPay Tools V8.5 — Indexation & Salary Cluster Reinforcement
+Date: 2026-09-07
+
+Purpose
+- Reinforce internal discovery of important salary-cluster URLs that Google Search Console is not yet consistently indexing.
+- Use contextual, topic-relevant links rather than sitewide/footer link inflation.
+
+Main changes
+- Added new contextual sources to /calculators/annual-income from weekly-pay, work-hours, overtime-pay, hours-to-decimal and selected salary conversion pages.
+- Added reverse-conversion links to /calculators/salary-to-hourly from five hourly-to-yearly long-tail pages.
+- Reinforced /calculators/salary-growth, /calculators/contractor-salary, /calculators/compensation-package, /calculators/pay-raise and /calculators/pto-value from closely related salary/pay pages.
+- Added salary-planning related links to selected programmatic salary conversion pages.
+- Updated sitemap lastmod dates only for pages modified in this release.
+
+Preserved
+- Clean internal URLs (no .html internal hrefs).
+- Existing canonicals and index/follow directives.
+- Existing calculator JavaScript and formulas.
+- Existing page titles, H1s and meta descriptions unless untouched by this release.

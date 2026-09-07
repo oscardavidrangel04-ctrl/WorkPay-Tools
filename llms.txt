@@ -18,3 +18,13 @@
 - https://work-pay-tools.vercel.app/privacy
 - https://work-pay-tools.vercel.app/terms
 - https://work-pay-tools.vercel.app/contact
+## Salary guides added 2026-09-07
+- /salary-vs-hourly
+- /what-is-annual-income
+- /what-is-salaried-employment
+- /what-is-basic-salary
+- /w2-vs-1099
+- /55000-salary-to-hourly
+- /65000-salary-to-hourly
+- /90000-salary-to-hourly
+

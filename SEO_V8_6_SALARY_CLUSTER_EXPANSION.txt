@@ -1,0 +1,25 @@
+WorkPay Tools V8.6 — Salary Cluster Expansion
+Date: 2026-09-07
+
+NEW INDEXABLE PAGES
+- /55000-salary-to-hourly
+- /65000-salary-to-hourly
+- /90000-salary-to-hourly
+- /salary-vs-hourly
+- /what-is-annual-income
+- /what-is-salaried-employment
+- /what-is-basic-salary
+- /w2-vs-1099
+
+CLUSTER REINFORCEMENT
+- Added contextual links from the three salary pillars and compensation calculators.
+- Added a Salary Guides section to /calculators and a smaller discovery section to the home page.
+- Added cross-links from existing $40k/$50k/$60k/$70k/$80k/$100k conversion pages to the new $55k/$65k/$90k pages.
+- Updated sitemap lastmod only for pages changed in this build and added all 8 new canonical URLs.
+- Added official IRS/DOL reference links to classification-sensitive guides.
+
+SEO INTENT NOTES
+- salary-vs-hourly targets comparison/informational intent without duplicating the calculator intent.
+- what-is-annual-income supports /calculators/annual-income rather than replacing it.
+- W-2 vs 1099 remains educational and does not calculate taxes or decide worker classification.
+- $55k/$65k/$90k pages use the same explicit 40h × 52w assumption as the existing salary conversion series.
