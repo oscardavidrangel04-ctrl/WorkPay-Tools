@@ -1,0 +1,57 @@
+{
+  "method": "Node VM with minimal DOM stubs; not browser end-to-end",
+  "arithmetic_cases": [
+    {
+      "calculator": "weeklyPay",
+      "expected": "$950.00 / week",
+      "passed": true
+    },
+    {
+      "calculator": "semimonthly",
+      "expected": "$2,500.00 / semimonthly paycheck",
+      "passed": true
+    },
+    {
+      "calculator": "hoursDecimal",
+      "expected": "7.50 decimal hours",
+      "passed": true
+    },
+    {
+      "calculator": "biweekly",
+      "expected": "$2,000.00 / paycheck",
+      "passed": true
+    },
+    {
+      "calculator": "annualIncome",
+      "expected": "$52,000.00 / year",
+      "passed": true
+    },
+    {
+      "calculator": "salaryGrowth",
+      "expected": "$60,500.00 / year",
+      "passed": true
+    },
+    {
+      "calculator": "compensationPackage",
+      "expected": "$61,000.00 / year",
+      "passed": true
+    },
+    {
+      "calculator": "contractorSalary",
+      "expected": "$40.00 / billable hour",
+      "passed": true
+    },
+    {
+      "calculator": "salaryHourly",
+      "expected": "$31.25 / hour",
+      "passed": true
+    },
+    {
+      "calculator": "hourlySalary",
+      "expected": "$52,000.00 / year",
+      "passed": true
+    }
+  ],
+  "scenario_loader_cases": 3,
+  "catalogue_unique_tools": 18
+}

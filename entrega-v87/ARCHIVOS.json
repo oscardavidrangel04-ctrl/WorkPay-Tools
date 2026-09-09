@@ -1,0 +1,282 @@
+[
+  {
+    "archivo": "100000-salary-to-hourly.html",
+    "estado": "modificado",
+    "sha256": "55fe715b3b2989400ae602d25493924cf9084458e85dce26cc3840f5071a4160"
+  },
+  {
+    "archivo": "15-an-hour-is-how-much-a-year.html",
+    "estado": "modificado",
+    "sha256": "50b2723af202881e2b182eba73a7ae2b6014ff5c0818bea2e8c813c1cce266ed"
+  },
+  {
+    "archivo": "20-an-hour-is-how-much-a-year.html",
+    "estado": "modificado",
+    "sha256": "1abf4bf7167dd33d40a0331adf19990bc90014352c4a89cd2f63b1c1d7ea51a2"
+  },
+  {
+    "archivo": "25-an-hour-is-how-much-a-year.html",
+    "estado": "modificado",
+    "sha256": "48cd0e49bdf4a91b852e9e08a5f8db399396146430acf8e3895f4527daa38b31"
+  },
+  {
+    "archivo": "30-an-hour-is-how-much-a-year.html",
+    "estado": "modificado",
+    "sha256": "d65135d79ee2aa04de2c8a2ef1dbcbfecbd05a78350ed6f44002ff7e5196f6d1"
+  },
+  {
+    "archivo": "35-an-hour-is-how-much-a-year.html",
+    "estado": "modificado",
+    "sha256": "dbf31d4c5d48b8e82e01878ed8bf691ac6c3294a58e9e53705f6a164c8b0fbf5"
+  },
+  {
+    "archivo": "40-an-hour-is-how-much-a-year.html",
+    "estado": "modificado",
+    "sha256": "2113df6baf61c98e7ad6a860edeedabd9a26d3051721c8c9e36982246165a996"
+  },
+  {
+    "archivo": "40000-salary-to-hourly.html",
+    "estado": "modificado",
+    "sha256": "cd13dff33a0da09701c2b439ea3dea258019ece20b0436d885939d7e7d4f6a90"
+  },
+  {
+    "archivo": "404.html",
+    "estado": "modificado",
+    "sha256": "34568a18a59ca4e09079ba184bd4f13e0891106a4bf6f5ee0ad1be24e3c563dd"
+  },
+  {
+    "archivo": "50000-salary-to-hourly.html",
+    "estado": "modificado",
+    "sha256": "b5422a4deeb176d3d0beee063454835d2c1302d2e128da82bced64913aaf5063"
+  },
+  {
+    "archivo": "55000-salary-to-hourly.html",
+    "estado": "modificado",
+    "sha256": "aa21908d2c51760e0ab1dfbe09ebc76d1a53c315d2b381db6d78908ad38039b0"
+  },
+  {
+    "archivo": "60000-salary-to-hourly.html",
+    "estado": "modificado",
+    "sha256": "9efaf3e2581b67498508c0a6c3ed046b21aef39d7f4a8e8da6455aaa6c1176bf"
+  },
+  {
+    "archivo": "65000-salary-to-hourly.html",
+    "estado": "modificado",
+    "sha256": "0bb5709957cbec4aefb76423bb85d5a6618355309ae1e4c6b7dc41ec3becea04"
+  },
+  {
+    "archivo": "70000-salary-to-hourly.html",
+    "estado": "modificado",
+    "sha256": "d1622e0255d7600e3bef086b17e63bf904dbcf2b607a230b197bc5742d79be3c"
+  },
+  {
+    "archivo": "80000-salary-to-hourly.html",
+    "estado": "modificado",
+    "sha256": "36e0f6b01f2ddc02d0d5f5f16eda206f5308c4f92ce667e92cf7109e505c4208"
+  },
+  {
+    "archivo": "90000-salary-to-hourly.html",
+    "estado": "modificado",
+    "sha256": "51ba087a61df67c1f8fe5ae2032282680571d075836731250a965b85b6a89efe"
+  },
+  {
+    "archivo": "about.html",
+    "estado": "modificado",
+    "sha256": "490bd8099d30ec48f35c0898f685097203daeb59b4aaef9047bb41734fdbda1c"
+  },
+  {
+    "archivo": "calculators/annual-income.html",
+    "estado": "modificado",
+    "sha256": "d156d0a600999c17910b636144f1393d5a5f8f79d3df087982e28fee602cd2ae"
+  },
+  {
+    "archivo": "calculators/biweekly-pay.html",
+    "estado": "modificado",
+    "sha256": "505f3d0cae6fded7cfd84830cacfc2a88d957fc85599ec063ee394f7a225c3d9"
+  },
+  {
+    "archivo": "calculators/compensation-package.html",
+    "estado": "modificado",
+    "sha256": "091ccb8a3201de18060c9ef6d9bcb5502377f53c8dafaacfc770b3ad3480d0a0"
+  },
+  {
+    "archivo": "calculators/contractor-salary.html",
+    "estado": "modificado",
+    "sha256": "23733277f39bfb51bd374df3b5d470ee91a90ec77fbf11ff5ad2840f81b681dc"
+  },
+  {
+    "archivo": "calculators/double-time.html",
+    "estado": "modificado",
+    "sha256": "fdc433b2625a3f1214e79adb5c6e0103988925e491c1221f19a7a0bb744489f5"
+  },
+  {
+    "archivo": "calculators/hourly-to-salary.html",
+    "estado": "modificado",
+    "sha256": "92b539804b8401fdf0bdbe022e0b00f8c6b22d7dcda6482f4bcd77b6ec2fb3ec"
+  },
+  {
+    "archivo": "calculators/hours-to-decimal.html",
+    "estado": "modificado",
+    "sha256": "ab47935b491600638f1e5c30b3be37f4634ed3341978c5fbc16c70c27da07ece"
+  },
+  {
+    "archivo": "calculators/index.html",
+    "estado": "modificado",
+    "sha256": "2abe655cbd14ee33510e11d089e8aaf0c9dd62a6c821e0f837c120331b8245d0"
+  },
+  {
+    "archivo": "calculators/monthly-income.html",
+    "estado": "modificado",
+    "sha256": "475d9dab2b23a8a15898e39d5fde237857e140044ba64148f552fcedd4ee225d"
+  },
+  {
+    "archivo": "calculators/overtime-pay.html",
+    "estado": "modificado",
+    "sha256": "770f0bcef5130cda1f97379755bdd6a6d762968ad19a716f924d40ccf8356c49"
+  },
+  {
+    "archivo": "calculators/pay-raise.html",
+    "estado": "modificado",
+    "sha256": "6d804a81a85b679fbe5c0140f5156236cf83e33b16dea6764f5680a816a09d97"
+  },
+  {
+    "archivo": "calculators/pto-value.html",
+    "estado": "modificado",
+    "sha256": "c6c7294a02f5cdca384662c59154fa0a8d21ccfe9f7e8b430998ae0bd5e42c0c"
+  },
+  {
+    "archivo": "calculators/salary-growth.html",
+    "estado": "modificado",
+    "sha256": "a832030b8115b613e750db953fa0f28725248e8e9c8b3d75001b5bf4b1dc678f"
+  },
+  {
+    "archivo": "calculators/salary-to-hourly.html",
+    "estado": "modificado",
+    "sha256": "88cca47d56f91beb824a126b3ff9198893e6dac620fb6b0cdf91522c1aeeb412"
+  },
+  {
+    "archivo": "calculators/semimonthly-pay.html",
+    "estado": "modificado",
+    "sha256": "2e9fc7041b5b1b374ad63ab34452f49e7aa2f04496dca43830e7e0ae1dbaaacc"
+  },
+  {
+    "archivo": "calculators/shift-differential.html",
+    "estado": "modificado",
+    "sha256": "341a7196f0f37ff04e46dcc6783b0bbf99ba7fbac4ec1ff9f8010b2b09ead501"
+  },
+  {
+    "archivo": "calculators/time-card.html",
+    "estado": "modificado",
+    "sha256": "570feb6731205a4c40e50658f262efdbfab2f58c54908eb677c2d6aebc0bfa84"
+  },
+  {
+    "archivo": "calculators/weekly-pay.html",
+    "estado": "modificado",
+    "sha256": "49ac0383dc417e1c46037919ff9da65dc7d7ef136ae473d07aa3ecb049539a74"
+  },
+  {
+    "archivo": "calculators/work-hours.html",
+    "estado": "modificado",
+    "sha256": "e78ee50e7c023d12f77e9598c1384946eca20e56df5354125519a40cbf96e2b0"
+  },
+  {
+    "archivo": "calculators.html",
+    "estado": "modificado",
+    "sha256": "2abe655cbd14ee33510e11d089e8aaf0c9dd62a6c821e0f837c120331b8245d0"
+  },
+  {
+    "archivo": "catalog-page.js",
+    "estado": "nuevo",
+    "sha256": "2bcb10a2ebe111097958a396088b9f7818a17b082d38350d70fdf9d2e0781954"
+  },
+  {
+    "archivo": "contact.html",
+    "estado": "modificado",
+    "sha256": "e5536b8d10b786aa4077c624564d50c0a2d4a8d40472b5723885890efd30c984"
+  },
+  {
+    "archivo": "entrega-v87/LEEME.md",
+    "estado": "nuevo",
+    "sha256": "6f21a30d61792a0c94318349eadd54cba24f8f01e710607843a67de2c1301497"
+  },
+  {
+    "archivo": "entrega-v87/VALIDACION_CALCULOS.json",
+    "estado": "nuevo",
+    "sha256": "5ac8af00b80c90b2c68ce83e376e8c3df9bdfb576c06c8c9899db154395a7357"
+  },
+  {
+    "archivo": "entrega-v87/VALIDACION_ESTATICA.json",
+    "estado": "nuevo",
+    "sha256": "9b83a7f079c2ce760ad8d5d20937a2d41ce454f5ad95056616bdd7ca5ea30964"
+  },
+  {
+    "archivo": "home-page.js",
+    "estado": "nuevo",
+    "sha256": "b55baddf4e6a68b201ec56855ec92cff0e900700ed6afd7cdd2ddc4a25b1a5e5"
+  },
+  {
+    "archivo": "index.html",
+    "estado": "modificado",
+    "sha256": "f616d3a80451c625cb332be14881e708fa6a02e239aa0a06ac7e5c184044c2ad"
+  },
+  {
+    "archivo": "interface-v87.css",
+    "estado": "nuevo",
+    "sha256": "68efed10a5d20dee17099a844276a266ccba14ec3a4a886d9f134fbc1e0eaa9f"
+  },
+  {
+    "archivo": "interface-v87.js",
+    "estado": "nuevo",
+    "sha256": "ec0a0456eee735d66acc1790c44f0ab95ece7934c6e979aa3d5f7de9f59d2c86"
+  },
+  {
+    "archivo": "privacy.html",
+    "estado": "modificado",
+    "sha256": "cb780b0550cb0aa941770dbffe560c3f79f486be2f0cca27e3f9ada852ea2fd4"
+  },
+  {
+    "archivo": "salary-vs-hourly.html",
+    "estado": "modificado",
+    "sha256": "229f42babaaa539e387bbf2f6be9b025f6105afe2dc95bac5f4933dc3006bedf"
+  },
+  {
+    "archivo": "sitemap.xml",
+    "estado": "modificado",
+    "sha256": "3e643a475a01519a4c814ac312ade7d42f608516ef829bd179859fceef41a07d"
+  },
+  {
+    "archivo": "terms.html",
+    "estado": "modificado",
+    "sha256": "153548c41f4f662a31c46910a1035e9f6fef240584933a7a76779a0a7147670a"
+  },
+  {
+    "archivo": "tool-catalog.js",
+    "estado": "nuevo",
+    "sha256": "8227cb1262e6cfa98c1e1dcb1e84888ef76656de559ac150de95ceb52067a778"
+  },
+  {
+    "archivo": "vercel.json",
+    "estado": "modificado",
+    "sha256": "13fa12347c6596f3568b7e70bfb21b4f3c79f820df5d492e4049a68fc2be0a7c"
+  },
+  {
+    "archivo": "w2-vs-1099.html",
+    "estado": "modificado",
+    "sha256": "134fc03077ed5620c326ff82f6f71e4af20c8d8befa38db62500d27f512577bc"
+  },
+  {
+    "archivo": "what-is-annual-income.html",
+    "estado": "modificado",
+    "sha256": "9a4e12a67952fc629ffc4feddfd44d6e285689de00f5e46175a97fc7e124e824"
+  },
+  {
+    "archivo": "what-is-basic-salary.html",
+    "estado": "modificado",
+    "sha256": "555240f03fede165564569a3b23cb3de5e78bda6d7d4335e87a15377f214772d"
+  },
+  {
+    "archivo": "what-is-salaried-employment.html",
+    "estado": "modificado",
+    "sha256": "a60686c40e5b4ce661e96a6ed2c8799097b08110af61794cf4bd4ed8ab1fdfaf"
+  }
+]

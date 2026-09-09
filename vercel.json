@@ -85,5 +85,12 @@
       "source": "/calculators/compensation-package",
       "destination": "/calculators/compensation-package.html"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/calculators/index",
+      "destination": "/calculators",
+      "permanent": true
+    }
   ]
 }
