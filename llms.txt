@@ -10,6 +10,8 @@
 ## Core calculators
 - https://work-pay-tools.vercel.app/calculators/time-card
 - https://work-pay-tools.vercel.app/calculators/overtime-pay
+- https://work-pay-tools.vercel.app/calculators/time-and-a-half
+- https://work-pay-tools.vercel.app/calculators/pay-raise
 - https://work-pay-tools.vercel.app/calculators/hourly-to-salary
 - https://work-pay-tools.vercel.app/calculators/salary-to-hourly
 - https://work-pay-tools.vercel.app/calculators/work-hours
@@ -28,3 +30,10 @@
 - /65000-salary-to-hourly
 - /90000-salary-to-hourly
 
+## Pay raise and overtime expansion added 2026-09-13
+- /pay-raise-overtime
+- /how-to-calculate-salary-increase
+- /pay-raise-percentage
+- /salary-increase-vs-inflation
+- /how-to-calculate-overtime-pay
+- /50-an-hour-is-how-much-a-year

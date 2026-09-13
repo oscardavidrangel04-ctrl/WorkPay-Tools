@@ -84,6 +84,34 @@
     {
       "source": "/calculators/compensation-package",
       "destination": "/calculators/compensation-package.html"
+    },
+    {
+      "source": "/calculators/time-and-a-half",
+      "destination": "/calculators/time-and-a-half.html"
+    },
+    {
+      "source": "/how-to-calculate-salary-increase",
+      "destination": "/how-to-calculate-salary-increase.html"
+    },
+    {
+      "source": "/pay-raise-percentage",
+      "destination": "/pay-raise-percentage.html"
+    },
+    {
+      "source": "/salary-increase-vs-inflation",
+      "destination": "/salary-increase-vs-inflation.html"
+    },
+    {
+      "source": "/how-to-calculate-overtime-pay",
+      "destination": "/how-to-calculate-overtime-pay.html"
+    },
+    {
+      "source": "/pay-raise-overtime",
+      "destination": "/pay-raise-overtime.html"
+    },
+    {
+      "source": "/50-an-hour-is-how-much-a-year",
+      "destination": "/50-an-hour-is-how-much-a-year.html"
     }
   ],
   "redirects": [

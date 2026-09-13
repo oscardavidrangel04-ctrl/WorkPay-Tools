@@ -1,0 +1,18 @@
+{
+  "version": "8.8.0",
+  "date": "2026-09-13",
+  "new_urls": 7,
+  "html_documents_checked": 54,
+  "broken_internal_routes": 0,
+  "checks": {
+    "titles": "pass",
+    "h1": "pass",
+    "canonicals": "pass",
+    "json_ld": "pass",
+    "sitemap": "pass",
+    "vercel_rewrites": "pass",
+    "javascript_syntax": "pass",
+    "salary_formula": "pass",
+    "overtime_formula": "pass"
+  }
+}
