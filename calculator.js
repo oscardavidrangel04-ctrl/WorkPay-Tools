@@ -6,6 +6,7 @@ function elapsedHours(start,end){if(!start||!end)return 0;const [sh,sm]=start.sp
 function calculate(){
  const id=document.body.dataset.calculator;
  if(!id)return;
+ if(typeof window.validatePayInputs==='function' && !window.validatePayInputs())return;
  if(id==='overtime'||id==='weeklyPay'){
    const rate=Math.max(0,num('rate')),hours=Math.max(0,num('hours')),threshold=Math.max(0,num('threshold',40)),mult=Math.max(1,num('multiplier',1.5));
    if(id==='overtime'){
@@ -145,8 +146,9 @@ function calculate(){
    const rate=num('rate'),hours=num('hours'),weeks=num('weeks',52),weekly=rate*hours,annual=weekly*weeks;
    setResult(id==='monthlyIncome'?`${money(annual/12)} / month`:`${money(annual)} / year`,[['Weekly estimate',money(weekly)],['Monthly average',money(annual/12)],['Annual estimate',money(annual)]]);
  } else if(id==='raise'){
-   const salary=num('salary'),pct=num('percent'),inc=salary*pct/100,newSalary=salary+inc;
-   setResult(`${money(newSalary)} / year`,[['Current salary',money(salary)],['Annual increase',money(inc)],['Monthly increase',money(inc/12)],['Biweekly increase',money(inc/26)]]);
+   const salary=Math.max(0,num('salary')),pct=num('percent'),inflation=Math.max(0,num('inflation',0)),inc=salary*pct/100,newSalary=salary+inc;
+   const realChange=((1+pct/100)/(1+inflation/100)-1)*100;
+   setResult(`${money(newSalary)} / year`,[['Current salary',money(salary)],['Annual increase',money(inc)],['Monthly increase',money(inc/12)],['Biweekly increase',money(inc/26)],['Weekly increase',money(inc/52)],['Approx. hourly increase',money(inc/2080)+'/hr'],['Inflation comparison',inflation.toFixed(2)+'%'],['Estimated real change',realChange.toFixed(2)+'%']]);
  } else if(id==='salaryGrowth'){
    const salary=Math.max(0,num('salary')),pct=num('percent'),years=Math.max(1,Math.min(40,num('years',1)));
    const future=salary*Math.pow(1+pct/100,years),gain=future-salary;
