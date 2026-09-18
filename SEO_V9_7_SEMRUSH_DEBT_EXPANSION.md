@@ -1,0 +1,3 @@
+# SEO V9.7 - SEMrush Debt and Credit Expansion
+
+SEMrush Keyword Magic Tool, United States, researched debt payoff calculator on 2026-09-18. Verified signals included debt payoff calculator (14,800 volume, KD 64), credit debt payoff calculator (110, KD 12), pay off credit debt calculator (70, KD 31), debt resolution calculator (40, KD 42), and multiple long-tail payoff-plan queries. Twenty distinct guide URLs were created around payoff plans, snowball/avalanche, consolidation, settlement, repayment structure, APR and early payoff. Each URL is in the sitemap and linked from the finance-credit hub. No state/tax pages or duplicate calculator variants were created.
