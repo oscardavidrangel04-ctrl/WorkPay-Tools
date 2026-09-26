@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://work-pay-tools.vercel.app/sitemap.xml
+Sitemap: https://work-pay-tools.vercel.app/sitemap-prioritario.xml
