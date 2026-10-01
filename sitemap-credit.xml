@@ -2,19 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://work-pay-tools.vercel.app/statement-balance-vs-current-balance</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/available-credit-vs-credit-limit</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/credit-card-closing-date-vs-due-date</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -32,13 +32,13 @@
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/how-to-avoid-credit-card-interest</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/when-is-credit-card-payment-late</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -50,7 +50,7 @@
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/credit-card-billing-period</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -62,7 +62,7 @@
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/credit-card-late-fee</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -86,25 +86,25 @@
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/credit-utilization-ratio</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/credit-score-vs-credit-report</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/credit-card-grace-period</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/credit-card-autopay</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -116,13 +116,13 @@
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/credit-balance-vs-available-credit</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/credit-card-pending-vs-posted</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -157,20 +157,20 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://work-pay-tools.vercel.app/how-to-read-credit-report</loc>
-    <lastmod>2026-09-19</lastmod>
+    <loc>https://work-pay-tools.vercel.app/credit-report-error</loc>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://work-pay-tools.vercel.app/credit-report-error</loc>
-    <lastmod>2026-09-19</lastmod>
+    <loc>https://work-pay-tools.vercel.app/how-to-read-a-credit-report</loc>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/what-affects-credit-score</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -236,7 +236,7 @@
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/how-to-pay-off-credit-card-debt</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -254,7 +254,7 @@
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/credit-card-apr-vs-interest-rate</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -302,7 +302,7 @@
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/what-is-credit-card-minimum-payment</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -314,13 +314,13 @@
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/how-to-dispute-a-collection-on-credit-report</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/credit-card-payment-posting-date-vs-due-date</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -398,7 +398,7 @@
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/how-long-does-bankruptcy-stay-on-credit-report</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -410,7 +410,7 @@
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/how-to-improve-credit-age</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -422,7 +422,7 @@
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/how-to-remove-late-payment-from-credit-report</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -434,7 +434,7 @@
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/how-long-do-credit-inquiries-stay-on-credit-report</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -452,13 +452,13 @@
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/can-debt-collectors-call-you-at-work</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/should-i-pay-collection-agency-or-original-creditor</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -482,19 +482,19 @@
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/can-collection-agencies-report-to-credit-bureaus</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/how-to-prove-a-debt-is-not-yours</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/what-is-a-collection-account-on-credit-report</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -506,7 +506,7 @@
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/can-debt-collectors-call-family-members</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -518,7 +518,13 @@
   </url>
   <url>
     <loc>https://work-pay-tools.vercel.app/wrong-name-on-credit-report</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://work-pay-tools.vercel.app/credit-card-payment-allocation</loc>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

@@ -119,6 +119,11 @@
       "source": "/calculators/index",
       "destination": "/calculators",
       "permanent": true
+    },
+    {
+      "source": "/how-to-read-credit-report",
+      "destination": "/how-to-read-a-credit-report",
+      "permanent": true
     }
   ]
 }
