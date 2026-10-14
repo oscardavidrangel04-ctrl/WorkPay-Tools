@@ -1,0 +1,10 @@
+# Internal delivery notes only. Preserve robots.txt, llms.txt and verification files.
+/entrega-v87/
+/entrega-v88/
+/SEO_*.md
+/SEO_*.txt
+/CATALOG_*_NOTES.txt
+/HOME_*_NOTES.txt
+/HOURLY_TO_SALARY_*.txt
+/HOURLY_TO_SALARY_*.md
+/README.txt

@@ -155,7 +155,8 @@ function calculate(){
    let cumulative=0; for(let y=1;y<=Math.floor(years);y++) cumulative+=salary*Math.pow(1+pct/100,y);
    setResult(`${money(future)} / year`,[['Starting salary',money(salary)],['Years',years.toFixed(0)],['Total growth',money(gain)],['Growth percentage',salary>0?((future/salary-1)*100).toFixed(2)+'%':'0.00%'],['Cumulative salary',money(cumulative)]]);
  } else if(id==='contractorSalary'){
-   const salary=Math.max(0,num('salary')),hours=Math.max(1,num('hours')),weeks=Math.max(1,num('weeks'));
+   const salary=Math.max(0,num('salary')),hours=num('hours'),weeks=num('weeks');
+  if(hours<=0||weeks<=0||weeks>52){setResult('Enter positive hours and 1–52 weeks',[]);return;}
    const annualHours=hours*weeks,rate=salary/annualHours;
    setResult(`${money(rate)} / billable hour`,[['Annual income target',money(salary)],['Billable hours per year',annualHours.toFixed(0)],['Weekly billable hours',hours.toFixed(0)],['Billable weeks',weeks.toFixed(0)],['Monthly income target',money(salary/12)]]);
  } else if(id==='compensationPackage'){

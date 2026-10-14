@@ -1,9 +1,23 @@
 /* Interface only: original arithmetic remains in calculator.js. */
 (() => {
   const start = () => {
-    document.body.classList.add('wp-enhanced');
-    const menu = document.querySelector('.wp-menu');
-    const nav = document.getElementById('site-navigation');
+    const nav = document.querySelector('.site-header .nav');
+    let menu = document.querySelector('.site-header .wp-menu');
+    // Only collapse navigation once a working, accessible toggle exists.
+    if (nav) {
+      if (!nav.id) nav.id = 'site-navigation';
+      if (!nav.hasAttribute('aria-label')) nav.setAttribute('aria-label', 'Main navigation');
+      if (!menu) {
+        menu = document.createElement('button');
+        menu.type = 'button';
+        menu.className = 'wp-menu';
+        menu.textContent = 'Menu';
+        nav.after(menu);
+      }
+      menu.setAttribute('aria-controls', nav.id);
+      menu.setAttribute('aria-expanded', 'false');
+      document.body.classList.add('wp-enhanced');
+    }
     const close = () => { nav?.classList.remove('is-open'); menu?.setAttribute('aria-expanded','false'); if(menu) menu.textContent='Menu'; };
     menu?.addEventListener('click',()=>{const open=nav.classList.toggle('is-open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'Close menu':'Menu';});
     nav?.addEventListener('click',e=>{if(e.target.closest('a'))close();});
