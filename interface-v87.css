@@ -7,6 +7,7 @@
 
 /* Comparison cards must shrink within their grid, including long link text. */
 .wp87 .compare-card{min-width:0;overflow-wrap:anywhere}
+.wp87 .content-stack>.content-card{min-width:0;overflow-wrap:anywhere}
 
 /* Mobile fallback: navigation stays usable if scripts are blocked or fail. */
 @media screen and (max-width:960px){.wp87:not(.wp-enhanced) .site-header{flex-wrap:wrap;padding-block:10px;gap:8px}.wp87:not(.wp-enhanced) .nav{display:flex;flex-basis:100%;flex-wrap:wrap}.wp87:not(.wp-enhanced) .nav a{display:inline-flex!important}.wp87 .site-header .brand{flex-shrink:0}}
