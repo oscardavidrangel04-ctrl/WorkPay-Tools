@@ -2,23 +2,23 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>https://work-pay-tools.vercel.app/sitemap-core.xml</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-18</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://work-pay-tools.vercel.app/sitemap-calculators.xml</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://work-pay-tools.vercel.app/sitemap-salary.xml</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://work-pay-tools.vercel.app/sitemap-credit.xml</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://work-pay-tools.vercel.app/sitemap-guides.xml</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </sitemap>
   <sitemap><loc>https://work-pay-tools.vercel.app/sitemap-topics.xml</loc><lastmod>2026-10-08</lastmod></sitemap>
 </sitemapindex>
