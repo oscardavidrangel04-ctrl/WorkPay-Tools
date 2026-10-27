@@ -100,10 +100,27 @@
   const rate=document.getElementById('quick-rate'), hours=document.getElementById('quick-hours'), total=document.getElementById('quick-total'), detail=document.getElementById('quick-detail');
   const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(n);
   const calc=()=>{
-    const r=Math.max(0,Number(rate.value)||0), h=Math.min(168,Math.max(0,Number(hours.value)||0));
-    const regularHours=Math.min(h,40), overtimeHours=Math.max(0,h-40), pay=regularHours*r+overtimeHours*r*1.5;
-    total.textContent=money(pay);detail.textContent=`${regularHours.toFixed(2).replace('.00','')} regular hours + ${overtimeHours.toFixed(2).replace('.00','')} overtime hours`;
+    let invalid=false;
+    for(const input of [rate,hours]){
+      const value=Number(input.value);
+      const message=input.value.trim()===''||!Number.isFinite(value)?'Enter a number.':input.validity.rangeUnderflow?'Enter '+input.min+' or more.':input.validity.rangeOverflow?'Enter '+input.max+' or less.':input.validity.stepMismatch?'Use increments of '+(input.step||'1')+'.':'';
+      const errorId=input.id+'-input-error';
+      let error=document.getElementById(errorId);
+      const ids=new Set((input.getAttribute('aria-describedby')||'').split(/\s+/).filter(Boolean));
+      if(message){
+        invalid=true;input.setAttribute('aria-invalid','true');
+        if(!error){error=document.createElement('span');error.id=errorId;error.className='wp-input-error';error.style.display='block';(input.closest('.input-shell')||input).after(error);}
+        error.textContent=message;ids.add(errorId);
+      }else{input.removeAttribute('aria-invalid');if(error)error.remove();ids.delete(errorId);}
+      if(ids.size)input.setAttribute('aria-describedby',[...ids].join(' '));else input.removeAttribute('aria-describedby');
+    }
+    if(invalid){total.textContent='Check inputs';detail.textContent='Correct the highlighted inputs to estimate weekly gross pay.';return false;}
+    const r=Number(rate.value),h=Number(hours.value);
+    const regularHours=Math.min(h,40),overtimeHours=Math.max(0,h-40),pay=regularHours*r+overtimeHours*r*1.5;
+    if(!Number.isFinite(pay)){total.textContent='Result unavailable';detail.textContent='The entered amounts are too large to calculate. Check your hourly rate.';return false;}
+    total.textContent=money(pay);detail.textContent=regularHours.toFixed(2).replace('.00','')+' regular hours + '+overtimeHours.toFixed(2).replace('.00','')+' overtime hours';
+    return true;
   };
   let calcTimer;
-  [rate,hours].forEach(el=>el&&el.addEventListener('input',()=>{calc();clearTimeout(calcTimer);calcTimer=setTimeout(()=>track('home_overtime_calculation',{rate:Number(rate.value)||0,hours:Number(hours.value)||0}),500);})); calc();
+  [rate,hours].forEach(el=>el&&el.addEventListener('input',()=>{clearTimeout(calcTimer);if(calc())calcTimer=setTimeout(()=>track('home_overtime_calculation',{rate:Number(rate.value),hours:Number(hours.value)}),500);}));calc();
 })();

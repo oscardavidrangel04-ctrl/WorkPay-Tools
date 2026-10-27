@@ -11,7 +11,7 @@ window.validatePayInputs = function () {
     else if (input.min !== '' && number < Number(input.min)) message = 'Enter ' + input.min + ' or more.';
     else if (input.max !== '' && number > Number(input.max)) message = 'Enter ' + input.max + ' or less.';
     else if (Math.abs(number) > 1e12) message = 'Use a value no greater than 1 trillion.';
-    else if (input.validity.stepMismatch) message = 'Enter a whole number.';
+    else if (input.validity.stepMismatch) message = 'Use increments of ' + (input.step || '1') + '.';
     const errorId = input.id + '-error';
     let error = document.getElementById(errorId);
     if (message) {
@@ -28,7 +28,7 @@ window.validatePayInputs = function () {
     }
   });
   let status=document.getElementById('calculation-status');
-  if(!status){status=document.createElement('p');status.id='calculation-status';status.setAttribute('role','status');main.querySelector('.calc-card,.input-panel')?.append(status);}
+  if(!status){status=document.createElement('p');status.id='calculation-status';status.setAttribute('role','status');(main.querySelector('.calc-card,.input-panel')||main).append(status);}
   status.textContent=invalid?'Correct the highlighted inputs. Results are unavailable until the values are valid.':'';
   main.querySelectorAll('.result,.result-panel,.hourly-result-panel,#breakdown,.answer-grid').forEach(el=>{
     if(!el.querySelector('input,select,textarea'))el.hidden=invalid;
